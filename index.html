@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4ef">
+  <meta name="description" content="Сравнительное исследование AI-assisted и традиционного обучения английскому взрослых 25–30 лет: анкета для учителей школы №125 в Актобе.">
+  <title>Английский и AI — исследовательский проект</title>
+  <style>
+    :root {
+      --paper: #f5f4ef; --white: #fffefa; --ink: #192824; --muted: #65736d;
+      --line: #dce0d8; --forest: #183c33; --forest-2: #264d40; --lime: #d4f174;
+      --lavender: #e8e4fb; --coral: #f4b08d; --sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      --serif: Georgia, "Times New Roman", serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.6 var(--sans); }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .wrap { width: min(1160px, calc(100% - 48px)); margin: auto; }
+    .topbar { position: sticky; z-index: 20; top: 0; border-bottom: 1px solid rgba(25,40,36,.09); background: rgba(245,244,239,.9); backdrop-filter: blur(16px); }
+    .nav { height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-size: 12px; font-weight: 800; letter-spacing: -.02em; white-space: nowrap; }
+    .brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px; background: var(--lime); color: var(--forest); font-size: 10px; font-weight: 900; letter-spacing: -.08em; }
+    .brand small { display: block; color: #839088; font-size: 8px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .nav-right { display: flex; align-items: center; gap: 28px; }
+    .nav-links { display: flex; align-items: center; gap: clamp(16px,2.4vw,30px); color: #53625b; font-size: 11px; font-weight: 700; }
+    .nav-links a:hover { color: var(--forest-2); }
+    .lang-switch { display: flex; padding: 3px; border: 1px solid #d7ddd4; border-radius: 99px; background: #fffefa; }
+    .lang-switch button { min-width: 34px; padding: 5px 7px; border: 0; border-radius: 99px; background: transparent; color: #7b867f; font-size: 9px; font-weight: 850; cursor: pointer; }
+    .lang-switch button[aria-pressed="true"] { background: var(--forest); color: white; }
+    .menu-toggle { display: none; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; }
+    .hero { position: relative; overflow: hidden; padding: 76px 0 45px; }
+    .hero::before { position: absolute; top: -280px; right: -125px; width: 610px; height: 610px; border: 1px solid #e2e5dd; border-radius: 50%; content: ""; box-shadow: 0 0 0 42px rgba(226,229,221,.35), 0 0 0 95px rgba(226,229,221,.2); pointer-events: none; }
+    .hero-grid { position: relative; display: grid; grid-template-columns: 1.04fr .96fr; align-items: center; gap: clamp(42px,8vw,105px); }
+    .eyebrow,.section-kicker { display: flex; align-items: center; gap: 9px; color: #627d4a; font-size: 9px; font-weight: 900; letter-spacing: .15em; text-transform: uppercase; }
+    .eyebrow::before { width: 24px; height: 2px; background: #89a95c; content: ""; }
+    h1,h2,h3,p { margin-top: 0; }
+    h1 { max-width: 690px; margin: 19px 0 21px; font: 500 clamp(52px,7.5vw,88px)/.96 var(--serif); letter-spacing: -.065em; }
+    h1 em { color: #5e774e; font-weight: 400; }
+    .hero-copy { max-width: 510px; margin: 0; color: #596861; font-size: 15px; line-height: 1.8; }
+    .meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 27px; }
+    .meta-pill { display: inline-flex; align-items: center; gap: 7px; padding: 7px 10px; border: 1px solid #d7ddd4; border-radius: 99px; color: #506058; background: rgba(255,254,250,.65); font-size: 10px; font-weight: 750; }
+    .meta-pill b { color: #5f7d48; font-size: 12px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .button { min-height: 45px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 0 17px; border: 1px solid transparent; border-radius: 99px; background: var(--forest); color: white; font-size: 11px; font-weight: 800; cursor: pointer; transition: transform .18s, background .18s; }
+    .button:hover { transform: translateY(-2px); background: var(--forest-2); }
+    .button-outline { border-color: #ced6cd; background: transparent; color: var(--ink); }
+    .button-outline:hover { border-color: var(--forest); background: var(--white); color: var(--ink); }
+    .button svg { width: 15px; height: 15px; }
+    .hero-visual { position: relative; display: grid; min-height: 430px; place-items: center; }
+    .loop-card { position: relative; z-index: 1; width: min(410px,95%); padding: 26px; border: 1px solid rgba(25,40,36,.1); border-radius: 23px; background: var(--white); box-shadow: 0 26px 80px rgba(28,54,43,.11); transform: rotate(1deg); }
+    .loop-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 21px; }
+    .loop-eyebrow { margin-bottom: 7px; color: #89938c; font-size: 8px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+    .loop-card h2 { margin: 0; font: 500 25px/1.1 var(--serif); letter-spacing: -.035em; }
+    .loop-star { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; background: var(--lime); color: var(--forest); font-size: 16px; }
+    .loop-items { display: grid; gap: 9px; }
+    .loop-item { display: grid; grid-template-columns: 33px 1fr auto; align-items: center; gap: 11px; padding: 11px; border: 1px solid #edf0ea; border-radius: 12px; background: #fbfcf8; }
+    .loop-num { display: grid; width: 29px; height: 29px; place-items: center; border-radius: 9px; background: #edf2e3; color: #567445; font: 13px var(--serif); }
+    .loop-item:nth-child(2) .loop-num { background: var(--lavender); color: #6f63a5; }
+    .loop-item:nth-child(3) .loop-num { background: #fae6dc; color: #a76646; }
+    .loop-item strong { display: block; font-size: 10px; }
+    .loop-item small { display: block; color: #849087; font-size: 9px; }
+    .loop-item .arrow { color: #9ba49d; font-size: 15px; }
+    .loop-note { display: flex; align-items: flex-start; gap: 8px; margin-top: 15px; padding-top: 13px; border-top: 1px solid #edf0ea; color: #77837b; font-size: 9px; line-height: 1.6; }
+    .loop-note b { color: #607e48; font-size: 13px; }
+    .stamp { position: absolute; z-index: 2; display: flex; align-items: center; gap: 8px; padding: 10px 13px; border: 1px solid rgba(25,40,36,.08); border-radius: 12px; background: var(--white); box-shadow: 0 12px 30px rgba(28,54,43,.1); font-size: 9px; font-weight: 850; }
+    .stamp i { display: grid; width: 22px; height: 22px; place-items: center; border-radius: 7px; background: var(--lavender); font-style: normal; }
+    .stamp-one { top: 13%; left: -2%; transform: rotate(-4deg); }
+    .stamp-two { right: -3%; bottom: 13%; transform: rotate(4deg); }
+    .stamp-two i { background: var(--coral); }
+    .hero-foot { display: flex; justify-content: space-between; gap: 18px; margin-top: 48px; padding-top: 17px; border-top: 1px solid #dde2d9; color: #7e8982; font-size: 9px; }
+    .hero-foot strong { color: #47564f; font-weight: 800; }
+    .mini-app-section { padding-top: 58px; }
+    .app-shell { display: grid; grid-template-columns: .7fr 1.3fr; overflow: hidden; border: 1px solid #dce1d8; border-radius: 21px; background: var(--white); box-shadow: 0 24px 65px rgba(30,53,43,.07); }
+    .app-controls { padding: 24px; background: #e6ecd8; }
+    .app-control-group + .app-control-group { margin-top: 25px; }
+    .app-label { display: block; margin-bottom: 11px; color: #54664c; font-size: 8px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+    .skill-options { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .skill-option { min-height: 42px; padding: 8px 10px; border: 1px solid #ced9c4; border-radius: 10px; background: rgba(255,255,255,.52); color: #556359; text-align: left; font-size: 9px; font-weight: 750; cursor: pointer; transition: .15s ease; }
+    .skill-option:hover { border-color: #8ba269; }
+    .skill-option[aria-pressed="true"] { border-color: var(--forest); background: var(--forest); color: white; }
+    .duration-value { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .duration-value output { color: var(--forest); font: 500 25px/1 var(--serif); }
+    input[type="range"] { width: 100%; margin: 6px 0 0; accent-color: var(--forest); cursor: pointer; }
+    .range-marks { display: flex; justify-content: space-between; margin-top: 5px; color: #7b8878; font-size: 8px; }
+    .app-controls-note { margin: 24px 0 0; padding-top: 13px; border-top: 1px solid #cfd9c6; color: #687568; font-size: 8px; line-height: 1.6; }
+    .app-results { padding: 24px; }
+    .app-result-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+    .app-result-head h3 { margin: 0; font: 500 24px/1.1 var(--serif); letter-spacing: -.03em; }
+    .demo-tag { flex: none; padding: 6px 9px; border-radius: 99px; background: #edf3df; color: #5d7746; font-size: 7px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .app-result-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+    .app-result-card { min-height: 212px; display: flex; flex-direction: column; padding: 13px; border: 1px solid #e3e7df; border-radius: 13px; background: #fdfdf9; }
+    .app-result-card:nth-child(2) { background: #faf9ff; }
+    .app-result-card:nth-child(3) { border-color: #d5dfc3; background: #f4f8eb; }
+    .mode-title { display: flex; align-items: center; gap: 7px; margin-bottom: 9px; font: 500 16px/1.1 var(--serif); }
+    .mode-icon { display: grid; width: 23px; height: 23px; place-items: center; border-radius: 7px; background: var(--lime); color: var(--forest); font: 11px var(--sans); }
+    .app-result-card:nth-child(2) .mode-icon { background: var(--lavender); color: #6c60a1; }
+    .app-result-card:nth-child(3) .mode-icon { background: #f8dfcf; color: #985e42; }
+    .mode-copy { flex: 1; margin: 0 0 12px; color: #66736b; font-size: 8px; line-height: 1.65; }
+    .time-breakdown { display: grid; gap: 4px; padding-top: 9px; border-top: 1px solid #e7ebe2; }
+    .time-phase { display: flex; align-items: baseline; justify-content: space-between; gap: 7px; color: #7a867d; font-size: 7px; }
+    .time-phase strong { color: #405346; font-size: 8px; white-space: nowrap; }
+    .app-bottom { display: flex; align-items: flex-start; gap: 8px; margin-top: 11px; padding: 10px 12px; border-radius: 10px; background: var(--forest); color: #e8f0df; font-size: 8px; line-height: 1.6; }
+    .app-bottom b { color: var(--lime); }
+    .tutor-section { background: #e9e5fa; }
+    .tutor-shell { overflow: hidden; border: 1px solid #d6d1e8; border-radius: 20px; background: var(--white); box-shadow: 0 24px 65px rgba(43,38,76,.08); }
+    .tutor-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 21px; background: var(--forest); color: white; }
+    .tutor-identity { display: flex; align-items: center; gap: 11px; }
+    .tutor-avatar { display: grid; width: 37px; height: 37px; place-items: center; border-radius: 12px; background: var(--lime); color: var(--forest); font-size: 17px; }
+    .tutor-identity strong { display: block; font: 500 20px/1.1 var(--serif); }
+    .tutor-status { display: flex; align-items: center; gap: 6px; margin-top: 4px; color: #c8d6ce; font-size: 8px; }
+    .tutor-status::before { width: 6px; height: 6px; border-radius: 50%; background: #c8f36a; content: ""; }
+    .clear-chat { padding: 7px 10px; border: 1px solid rgba(255,255,255,.22); border-radius: 99px; background: transparent; color: #f0f5ef; font-size: 8px; font-weight: 750; cursor: pointer; }
+    .clear-chat:hover { background: rgba(255,255,255,.1); }
+    .tutor-body { display: grid; grid-template-columns: 1.3fr .7fr; }
+    .chat-main { min-width: 0; border-right: 1px solid #ebedf0; }
+    .tutor-modes { display: flex; gap: 5px; padding: 11px 14px; border-bottom: 1px solid #edf0ea; }
+    .mode-tab { padding: 7px 11px; border: 1px solid transparent; border-radius: 99px; background: transparent; color: #6c7771; font-size: 8px; font-weight: 800; cursor: pointer; }
+    .mode-tab[aria-pressed="true"] { border-color: #dce5cc; background: #edf4dd; color: #405e36; }
+    .messages { height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 11px; padding: 17px; scroll-behavior: smooth; }
+    .message { display: flex; align-items: flex-start; gap: 7px; }
+    .message.user { justify-content: flex-end; }
+    .message .bubble { max-width: 85%; padding: 10px 12px; border: 1px solid #eaede6; border-radius: 4px 13px 13px 13px; background: #f7f8f3; color: #46564e; font-size: 9px; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .message.user .bubble { border-color: #d9e8af; border-radius: 13px 4px 13px 13px; background: #edf5dc; }
+    .message .speaker { display: grid; flex: none; width: 23px; height: 23px; place-items: center; border-radius: 8px; background: #e9e5fa; color: #6c60a1; font-size: 10px; }
+    .tutor-sidebar { padding: 19px; background: #fbfbf7; }
+    .sidebar-label { margin: 0 0 8px; color: #718078; font-size: 8px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+    .quick-prompts { display: grid; gap: 6px; }
+    .quick-prompt { padding: 9px 10px; border: 1px solid #e1e5dc; border-radius: 10px; background: white; color: #59665f; text-align: left; font-size: 8px; line-height: 1.5; cursor: pointer; }
+    .quick-prompt:hover { border-color: #8ea86d; background: #f8faef; }
+    .tutor-tip { margin: 19px 0 0; padding: 12px; border-radius: 11px; background: #eeebfa; color: #69647e; font-size: 8px; line-height: 1.65; }
+    .tutor-tip strong { color: #514781; }
+    .chat-form { display: grid; grid-template-columns: 1fr auto auto; align-items: end; gap: 7px; padding: 11px 14px; border-top: 1px solid #edf0ea; }
+    .chat-input { width: 100%; min-height: 43px; max-height: 120px; resize: vertical; padding: 11px 12px; border: 1px solid #dce2d9; border-radius: 12px; outline: none; background: #fff; color: var(--ink); font: 10px/1.5 var(--sans); }
+    .chat-input:focus { border-color: #7e9e5d; box-shadow: 0 0 0 3px rgba(126,158,93,.13); }
+    .chat-button { display: grid; width: 41px; height: 41px; place-items: center; border: 0; border-radius: 12px; background: var(--forest); color: white; font-size: 16px; cursor: pointer; }
+    .chat-button:hover { background: var(--forest-2); }
+    .chat-button:disabled { opacity: .5; cursor: wait; }
+    .chat-button.mic { border: 1px solid #dce2d9; background: white; color: #53635a; }
+    .chat-button.mic.listening { border-color: #d78f76; background: #fff0e9; color: #a45037; animation: mic-pulse 1.2s ease-in-out infinite; }
+    @keyframes mic-pulse { 50% { box-shadow: 0 0 0 5px rgba(215,143,118,.17); } }
+    .chat-options { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 15px 12px; color: #89938c; font-size: 7px; }
+    .tts-toggle { display: inline-flex; align-items: center; gap: 5px; color: #68756e; }
+    .tts-toggle input { width: 12px; height: 12px; accent-color: var(--forest); }
+    .tutor-disclosure { max-width: 780px; margin: 11px 0 0; color: #716f83; font-size: 8px; line-height: 1.6; }
+    .tutor-disclosure strong { color: #514d68; }
+    .plan-builder { padding: 16px; border-bottom: 1px solid #edf0ea; background: #f6f8ef; }
+    .plan-builder[hidden] { display: none; }
+    .builder-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 11px; }
+    .builder-heading strong { display: block; color: #31493c; font: 500 19px/1.1 var(--serif); }
+    .builder-heading small { display: block; margin-top: 4px; color: #768278; font-size: 8px; }
+    .builder-spark { display: grid; width: 28px; height: 28px; flex: none; place-items: center; border-radius: 9px; background: var(--lime); color: var(--forest); }
+    .builder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 10px; }
+    .builder-field label { display: block; margin-bottom: 4px; color: #647264; font-size: 7px; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; }
+    .builder-field select { width: 100%; height: 34px; padding: 0 9px; border: 1px solid #dce3d5; border-radius: 8px; background: white; color: #435249; font: 9px var(--sans); }
+    .builder-field select:focus { outline: 2px solid rgba(123,154,86,.3); border-color: #83a05f; }
+    .builder-range { grid-column: 1/-1; }
+    .builder-range-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .builder-range output { color: var(--forest); font: 500 18px var(--serif); }
+    .builder-range input { margin: 2px 0 0; }
+    .plan-generate { width: 100%; min-height: 37px; grid-column: 1/-1; margin-top: 1px; border: 0; border-radius: 9px; background: var(--forest); color: white; font-size: 9px; font-weight: 850; cursor: pointer; }
+    .plan-generate:hover { background: var(--forest-2); }
+    .section { padding: 85px 0; }
+    .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 35px; margin-bottom: 34px; }
+    .section-kicker { margin-bottom: 13px; }
+    h2.section-title { max-width: 680px; margin: 0; font: 500 clamp(38px,5.2vw,60px)/1.02 var(--serif); letter-spacing: -.05em; }
+    .section-intro { max-width: 375px; margin: 0 0 3px; color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .frame-section { background: #e9e9e0; }
+    .lens-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 13px; }
+    .lens-card { display: grid; grid-template-columns: 48px 1fr; gap: 15px; min-height: 203px; padding: 22px; border: 1px solid #d7dcd3; border-radius: 17px; background: rgba(255,254,250,.68); }
+    .lens-icon { display: grid; width: 42px; height: 42px; place-items: center; border-radius: 13px; background: var(--lime); color: var(--forest); font: 18px var(--serif); }
+    .lens-card:nth-child(2) .lens-icon { background: var(--lavender); color: #6c60a1; }
+    .lens-card:nth-child(3) .lens-icon { background: #f8e0d2; color: #a26143; }
+    .lens-card:nth-child(4) .lens-icon { background: #dcece5; color: #3f705c; }
+    .lens-id { margin: 2px 0 8px; color: #8b958e; font-size: 8px; font-weight: 900; letter-spacing: .14em; }
+    .lens-card h3 { margin: 0 0 8px; font: 500 24px/1.1 var(--serif); letter-spacing: -.03em; }
+    .lens-card p { margin: 0; color: #65726b; font-size: 10px; line-height: 1.75; }
+    .research-q { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 20px; margin-top: 13px; padding: 21px 23px; border-radius: 16px; background: var(--forest); color: white; }
+    .research-q small { display: block; margin-bottom: 5px; color: var(--lime); font-size: 8px; font-weight: 900; letter-spacing: .15em; text-transform: uppercase; }
+    .research-q p { max-width: 800px; margin: 0; font: 500 clamp(19px,2.5vw,26px)/1.25 var(--serif); letter-spacing: -.025em; }
+    .q-symbol { display: grid; width: 41px; height: 41px; place-items: center; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; color: var(--lime); font: 21px var(--serif); }
+    .compare-section { background: var(--paper); }
+    .framework-note { display: flex; align-items: flex-start; gap: 10px; margin: -11px 0 22px; padding: 12px 14px; border: 1px solid #e1e3da; border-radius: 11px; color: #68756e; background: #fbfbf6; font-size: 9px; line-height: 1.6; }
+    .framework-note b { color: #66804d; font-size: 12px; }
+    .compare-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+    .compare-card { overflow: hidden; border: 1px solid #dce1d8; border-radius: 16px; background: var(--white); }
+    .compare-card header { display: flex; align-items: center; gap: 10px; padding: 14px 17px; border-bottom: 1px solid #edf0e9; }
+    .compare-card header b { display: grid; width: 27px; height: 27px; place-items: center; border-radius: 8px; background: #eef4dd; color: #5b7841; font: 12px var(--serif); }
+    .compare-card header h3 { margin: 0; font: 500 19px var(--serif); }
+    .compare-content { display: grid; grid-template-columns: 1fr 1fr; }
+    .compare-cell { padding: 14px 16px; }
+    .compare-cell + .compare-cell { border-left: 1px solid #edf0e9; }
+    .compare-cell label { display: block; margin-bottom: 6px; color: #8a958d; font-size: 7px; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
+    .compare-cell p { margin: 0; color: #596860; font-size: 9px; line-height: 1.65; }
+    .ask-row { padding: 11px 16px; border-top: 1px solid #edf0e9; background: #f9faf5; }
+    .ask-row label { display: block; margin-bottom: 3px; color: #66804d; font-size: 7px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+    .ask-row p { margin: 0; color: #596860; font-size: 9px; line-height: 1.5; }
+    .method-section { background: var(--forest); color: white; }
+    .method-section .section-kicker { color: var(--lime); }
+    .method-section .section-intro { color: #c7d4cd; }
+    .method-section h2.section-title { color: #f8f8f0; }
+    .method-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .method-card { min-height: 205px; padding: 21px; border: 1px solid rgba(255,255,255,.16); border-radius: 16px; background: rgba(255,255,255,.055); }
+    .method-n { display: inline-grid; width: 29px; height: 29px; place-items: center; margin-bottom: 25px; border-radius: 9px; background: var(--lime); color: var(--forest); font: 12px var(--serif); }
+    .method-card h3 { margin: 0 0 8px; color: #fbfaf2; font: 500 22px var(--serif); }
+    .method-card p { margin: 0; color: #c6d3cc; font-size: 10px; line-height: 1.75; }
+    .method-card strong { color: var(--lime); font-weight: 750; }
+    .distinction { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; overflow: hidden; margin-top: 13px; border: 1px solid rgba(255,255,255,.16); border-radius: 14px; background: rgba(255,255,255,.16); }
+    .distinction div { padding: 14px 17px; background: #21463b; }
+    .distinction small { display: block; margin-bottom: 4px; color: var(--lime); font-size: 7px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+    .distinction p { margin: 0; color: #e5ece6; font-size: 9px; line-height: 1.6; }
+    .plan-section { background: #e9e4fa; }
+    .plan-layout { display: grid; grid-template-columns: .76fr 1.24fr; gap: clamp(40px,8vw,105px); }
+    .plan-intro { align-self: start; position: sticky; top: 100px; }
+    .plan-intro .section-kicker { color: #7067a4; }
+    .plan-intro .section-title { max-width: 400px; }
+    .plan-intro > p { max-width: 345px; margin: 17px 0 0; color: #67647b; font-size: 11px; line-height: 1.8; }
+    .copy-status { min-height: 16px; margin: 8px 0 0; color: #5f6e55; font-size: 9px; }
+    .timeline { position: relative; }
+    .timeline::before { position: absolute; top: 22px; bottom: 25px; left: 16px; width: 1px; background: #c8c3e2; content: ""; }
+    .step { position: relative; display: grid; grid-template-columns: 34px 1fr; gap: 16px; padding-bottom: 23px; }
+    .step:last-child { padding-bottom: 0; }
+    .step-index { z-index: 1; display: grid; width: 33px; height: 33px; place-items: center; border: 1px solid #c9c5df; border-radius: 50%; background: #e9e4fa; color: #7067a4; font: 11px var(--serif); }
+    .step small { display: block; margin: 2px 0 5px; color: #817ba5; font-size: 7px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+    .step h3 { margin: 0 0 5px; color: #26273a; font: 500 21px/1.2 var(--serif); }
+    .step p { max-width: 565px; margin: 0; color: #69687b; font-size: 9px; line-height: 1.7; }
+    .plan-caveat { margin: 20px 0 0 49px; padding: 11px 13px; border-left: 2px solid #8d83c4; color: #69687b; font-size: 8px; line-height: 1.6; }
+    .outcome-section { padding: 76px 0; }
+    .outcome-grid { display: grid; grid-template-columns: .8fr 1.2fr; align-items: center; gap: 50px; }
+    .outcome-grid h2 { margin: 0; font: 500 clamp(36px,5vw,54px)/1.05 var(--serif); letter-spacing: -.05em; }
+    .outcome-grid > div > p { max-width: 430px; margin: 14px 0 0; color: var(--muted); font-size: 11px; line-height: 1.8; }
+    .outcome-list { display: grid; gap: 9px; }
+    .outcome-item { display: grid; grid-template-columns: 31px 1fr; align-items: center; gap: 11px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: #fbfbf7; }
+    .outcome-item b { display: grid; width: 27px; height: 27px; place-items: center; border-radius: 9px; background: var(--lime); color: var(--forest); font-size: 10px; }
+    .outcome-item span { color: #57655e; font-size: 9px; line-height: 1.5; }
+    .keywords { padding: 25px 0; border-top: 1px solid var(--line); }
+    .keywords-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .keywords h3 { margin: 0; font: 500 18px var(--serif); white-space: nowrap; }
+    .tags { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+    .tag { padding: 5px 9px; border: 1px solid #dce1d8; border-radius: 99px; color: #68746e; font-size: 8px; }
+    footer { padding: 17px 0; border-top: 1px solid var(--line); color: #849087; font-size: 8px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 12px; }
+    .footer-inner strong { color: #516057; }
+    [data-i18n] { transition: opacity .12s ease; }
+    @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{transition:none!important;animation:none!important} }
+    @media(max-width:850px) {
+      .hero-grid { gap: 25px; }
+      .hero-visual { min-height: 390px; }
+      .nav-right { gap: 16px; }
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 69px; left: 0; right: 0; padding: 16px 24px 20px; border-bottom: 1px solid var(--line); background: var(--paper); flex-direction: column; align-items: flex-start; gap: 14px; }
+      .nav-links.open { display: flex; }
+      .section { padding: 69px 0; }
+      .plan-layout { gap: 40px; }
+      .app-shell { grid-template-columns: 1fr; }
+      .app-controls { display: grid; grid-template-columns: 1.2fr .8fr; gap: 25px; }
+      .app-control-group + .app-control-group { margin-top: 0; }
+      .app-controls-note { grid-column: 1/-1; margin-top: 0; }
+      .tutor-body { grid-template-columns: 1fr; }
+      .chat-main { border-right: 0; }
+      .tutor-sidebar { border-top: 1px solid #ebedf0; }
+      .quick-prompts { grid-template-columns: repeat(3,1fr); }
+      .tutor-tip { margin-top: 11px; }
+      .plan-builder { padding: 13px; }
+    }
+    @media(max-width:650px) {
+      .wrap { width: min(100% - 34px, 540px); }
+      .nav { height: 62px; }
+      .nav-right { gap: 10px; }
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 61px; left: 0; right: 0; padding: 16px 22px 20px; border-bottom: 1px solid var(--line); background: var(--paper); flex-direction: column; align-items: flex-start; gap: 14px; }
+      .nav-links.open { display: flex; }
+      .hero { padding: 48px 0 27px; }
+      .hero::before { top: 180px; right: -430px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 16px; }
+      h1 { font-size: clamp(51px,14vw,73px); }
+      .hero-copy { font-size: 13px; }
+      .hero-visual { min-height: 343px; margin-top: 6px; }
+      .loop-card { width: min(390px,91%); padding: 20px; }
+      .stamp-one { left: -1%; top: 8%; }
+      .stamp-two { right: -1%; bottom: 7%; }
+      .hero-foot { flex-direction: column; gap: 4px; margin-top: 23px; }
+      .section { padding: 62px 0; }
+      .mini-app-section { padding-top: 43px; }
+      .section-head { display: block; margin-bottom: 24px; }
+      .section-intro { margin-top: 13px; }
+      .lens-grid,.compare-grid { grid-template-columns: 1fr; }
+      .lens-card { min-height: 0; padding: 18px; }
+      .research-q { padding: 17px; }
+      .compare-content { grid-template-columns: 1fr 1fr; }
+      .compare-cell { padding: 12px; }
+      .ask-row { padding: 10px 12px; }
+      .app-controls { display: block; padding: 19px; }
+      .app-control-group + .app-control-group { margin-top: 20px; }
+      .app-results { padding: 18px; }
+      .app-result-head { display: block; }
+      .demo-tag { display: inline-block; margin-top: 9px; }
+      .app-result-grid { grid-template-columns: 1fr; }
+      .app-result-card { min-height: 0; }
+      .mode-copy { font-size: 9px; }
+      .tutor-top { padding: 15px; }
+      .tutor-modes { overflow-x: auto; }
+      .mode-tab { white-space: nowrap; }
+      .messages { height: 300px; padding: 13px; }
+      .chat-form { grid-template-columns: 1fr auto auto; padding: 10px; }
+      .tutor-sidebar { padding: 15px; }
+      .quick-prompts { grid-template-columns: 1fr; }
+      .chat-options { align-items: flex-start; flex-direction: column; padding: 0 11px 11px; }
+      .method-grid { grid-template-columns: 1fr; }
+      .method-card { min-height: 0; padding: 17px; }
+      .method-n { margin-bottom: 15px; }
+      .distinction { grid-template-columns: 1fr; }
+      .plan-layout { grid-template-columns: 1fr; gap: 29px; }
+      .plan-intro { position: static; }
+      .plan-intro > p { margin-top: 11px; }
+      .outcome-grid { grid-template-columns: 1fr; gap: 24px; }
+      .keywords-inner { align-items: flex-start; flex-direction: column; }
+      .tags { justify-content: flex-start; }
+      .footer-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#top"><span class="brand-mark">AI / EN</span><span><small data-i18n="brandSub">Исследовательский проект</small><span data-i18n="brand">Английский и AI</span></span></a>
+      <div class="nav-right">
+        <nav class="nav-links" id="navLinks" aria-label="Навигация">
+          <a href="#tutor" data-i18n="navTutor">AI-тьютор</a><a href="#mini-app" data-i18n="navMiniApp">Мини-приложение</a><a href="#framework" data-i18n="navFramework">Направления</a><a href="#method" data-i18n="navMethod">Методика</a><a href="#plan" data-i18n="navPlan">План</a><a href="#outcome" data-i18n="navOutcome">Результат</a>
+        </nav>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" data-lang="ru" aria-pressed="true">RU</button><button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Открыть меню" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow" data-i18n="eyebrow">Сравнительное исследование</div>
+          <h1 data-i18n="heroTitle">AI и английский:<br><em>что меняется?</em></h1>
+          <p class="hero-copy" data-i18n="heroText">Исследуем, чем обучение с искусственным интеллектом отличается от традиционных занятий для взрослых 25–30 лет. В практической части — опрос учителей английского языка школы №125 в Актобе.</p>
+          <div class="meta-row"><span class="meta-pill"><b>◉</b><span data-i18n="audiencePill">Фокус: учащиеся 25–30 лет</span></span><span class="meta-pill"><b>⌖</b><span data-i18n="surveyPill">Опрос учителей · Актобе</span></span></div>
+          <div class="actions"><a class="button" href="#plan"><span data-i18n="heroButton1">Посмотреть план</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="button button-outline" href="#method" data-i18n="heroButton2">Как устроено исследование</a></div>
+        </div>
+        <div class="hero-visual" aria-label="Схема исследовательского цикла">
+          <span class="stamp stamp-one"><i>✦</i><span data-i18n="stampOne">Понять опыт учителей</span></span>
+          <span class="stamp stamp-two"><i>↗</i><span data-i18n="stampTwo">Сформулировать рекомендации</span></span>
+          <div class="loop-card">
+            <div class="loop-head"><div><div class="loop-eyebrow" data-i18n="loopEyebrow">Логика проекта</div><h2 data-i18n="loopTitle">От практики<br>к рекомендациям</h2></div><span class="loop-star">✳</span></div>
+            <div class="loop-items">
+              <div class="loop-item"><span class="loop-num">01</span><span><strong data-i18n="loop1Title">Сравнить методы</strong><small data-i18n="loop1Sub">Навыки и учебные условия</small></span><span class="arrow">↘</span></div>
+              <div class="loop-item"><span class="loop-num">02</span><span><strong data-i18n="loop2Title">Собрать мнения</strong><small data-i18n="loop2Sub">Анкета для учителей английского</small></span><span class="arrow">↘</span></div>
+              <div class="loop-item"><span class="loop-num">03</span><span><strong data-i18n="loop3Title">Предложить сочетание</strong><small data-i18n="loop3Sub">AI-практика и роль преподавателя</small></span><span class="arrow">✓</span></div>
+            </div>
+            <div class="loop-note"><b>✳</b><span data-i18n="loopNote">Это план исследования: результаты опроса ещё предстоит собрать и проанализировать.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="wrap hero-foot"><span><strong data-i18n="heroFoot1">Объект фокуса</strong> · <span data-i18n="heroFoot2">английский язык для взрослых учащихся</span></span><span><strong data-i18n="heroFoot3">Практическая база</strong> · <span data-i18n="heroFoot4">школа №125, Актобе</span></span></div>
+    </section>
+
+    <section class="section mini-app-section" id="mini-app">
+      <div class="wrap">
+        <div class="section-head"><div><div class="section-kicker" data-i18n="appKicker">Мини-приложение / Попробуйте сами</div><h2 class="section-title" data-i18n="appTitle">Соберите пример занятия.</h2></div><p class="section-intro" data-i18n="appIntro">Выберите языковой навык и доступное время. Сравните три варианта практики для одной и той же цели.</p></div>
+        <div class="app-shell">
+          <div class="app-controls">
+            <div class="app-control-group">
+              <span class="app-label" data-i18n="appSkillLabel">1 / Выберите навык</span>
+              <div class="skill-options" role="group" aria-label="Выберите навык" id="skillOptions">
+                <button class="skill-option" type="button" data-skill="speaking" aria-pressed="true"><span data-i18n="skillSpeaking">Говорение</span></button>
+                <button class="skill-option" type="button" data-skill="vocabulary" aria-pressed="false"><span data-i18n="skillVocabulary">Лексика</span></button>
+                <button class="skill-option" type="button" data-skill="grammar" aria-pressed="false"><span data-i18n="skillGrammar">Грамматика</span></button>
+                <button class="skill-option" type="button" data-skill="writing" aria-pressed="false"><span data-i18n="skillWriting">Письмо</span></button>
+              </div>
+            </div>
+            <div class="app-control-group">
+              <label class="app-label" for="sessionTime" data-i18n="appTimeLabel">2 / Время на практику</label>
+              <div class="duration-value"><span class="app-label" style="margin:0" data-i18n="appTimeHint">Одна сессия</span><output id="timeDisplay" for="sessionTime">30 мин</output></div>
+              <input id="sessionTime" type="range" min="15" max="45" step="15" value="30" aria-label="Длительность занятия">
+              <div class="range-marks"><span>15</span><span>30</span><span>45 <span data-i18n="minuteUnit">мин</span></span></div>
+            </div>
+            <p class="app-controls-note" data-i18n="appDisclaimer">План-пример для знакомства с идеей. Это не персональная оценка и не результат опроса учителей.</p>
+          </div>
+          <div class="app-results" aria-live="polite">
+            <div class="app-result-head"><div><div class="loop-eyebrow" data-i18n="appResultEyebrow">Варианты для вашей цели</div><h3 id="sessionTitle">Говорение · 30 минут</h3></div><span class="demo-tag" data-i18n="appDemoTag">Демо · пример</span></div>
+            <div class="app-result-grid">
+              <article class="app-result-card"><h4 class="mode-title"><span class="mode-icon">✦</span><span data-i18n="modeAi">С AI</span></h4><p class="mode-copy" id="aiActivity"></p><div class="time-breakdown" id="aiTiming"></div></article>
+              <article class="app-result-card"><h4 class="mode-title"><span class="mode-icon">◉</span><span data-i18n="modeTeacher">С преподавателем</span></h4><p class="mode-copy" id="teacherActivity"></p><div class="time-breakdown" id="teacherTiming"></div></article>
+              <article class="app-result-card"><h4 class="mode-title"><span class="mode-icon">↔</span><span data-i18n="modeBlend">Смешанный вариант</span></h4><p class="mode-copy" id="blendActivity"></p><div class="time-breakdown" id="blendTiming"></div></article>
+            </div>
+            <div class="app-bottom"><b>✳</b><span data-i18n="appBottomNote">Идея смешанного подхода: потренироваться самостоятельно, а затем применить навык в разговоре с человеком.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tutor-section" id="tutor">
+      <div class="wrap">
+        <div class="section-head"><div><div class="section-kicker" data-i18n="tutorKicker">AI-тьютор / Практика английского</div><h2 class="section-title" data-i18n="tutorTitle">Практикуйтесь. Спрашивайте. Улучшайте.</h2></div><p class="section-intro" data-i18n="tutorIntro">Обсуждайте темы голосом или текстом, разбирайте грамматику и дорабатывайте свои тексты с AI-наставником.</p></div>
+        <div class="tutor-shell">
+          <div class="tutor-top"><div class="tutor-identity"><span class="tutor-avatar">✦</span><span><strong data-i18n="tutorName">English practice coach</strong><span class="tutor-status" id="tutorStatus" data-i18n="tutorChecking">Проверяю подключение…</span></span></div><button class="clear-chat" id="clearChat" type="button" data-i18n="clearChat">Новый диалог</button></div>
+          <div class="tutor-body">
+            <div class="chat-main">
+              <div class="tutor-modes" role="group" aria-label="Режим тьютора">
+                <button class="mode-tab" type="button" data-tutor-mode="conversation" aria-pressed="true" data-i18n="modeConversation">Разговор</button>
+                <button class="mode-tab" type="button" data-tutor-mode="grammar" aria-pressed="false" data-i18n="modeGrammar">Грамматика</button>
+                <button class="mode-tab" type="button" data-tutor-mode="writing" aria-pressed="false" data-i18n="modeWriting">Письмо</button>
+                <button class="mode-tab" type="button" data-tutor-mode="plan" aria-pressed="false" data-i18n="modePlan">Мой план</button>
+              </div>
+              <div class="plan-builder" id="planBuilder" hidden>
+                <div class="builder-heading"><span><strong data-i18n="builderTitle">План под твой ритм</strong><small data-i18n="builderHint">Выбери цель и доступное время — тьютор соберёт расписание.</small></span><span class="builder-spark">✦</span></div>
+                <div class="builder-grid">
+                  <div class="builder-field"><label for="planGoal" data-i18n="goalLabel">Главная цель</label><select id="planGoal"><option value="speaking" data-i18n="goalSpeaking">Уверенная речь</option><option value="grammar" data-i18n="goalGrammar">Грамматика</option><option value="writing" data-i18n="goalWriting">Письмо</option><option value="vocabulary" data-i18n="goalVocabulary">Словарный запас</option><option value="balanced" data-i18n="goalBalanced">Всё понемногу</option></select></div>
+                  <div class="builder-field"><label for="planLevel" data-i18n="levelLabel">Мой уровень</label><select id="planLevel"><option>A1</option><option>A2</option><option selected>B1</option><option>B2</option><option>C1</option></select></div>
+                  <div class="builder-field"><label for="planDays" data-i18n="daysLabel">Дней в неделю</label><select id="planDays"><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></div>
+                  <div class="builder-field"><label for="planWeeks" data-i18n="weeksLabel">Срок плана</label><select id="planWeeks"><option value="2" data-i18n="weeks2">2 недели</option><option value="4" selected data-i18n="weeks4">4 недели</option><option value="6" data-i18n="weeks6">6 недель</option><option value="8" data-i18n="weeks8">8 недель</option></select></div>
+                  <div class="builder-field builder-range"><div class="builder-range-top"><label for="planMinutes" data-i18n="minutesLabel">Время на занятие</label><output id="planMinutesValue" for="planMinutes">30 мин</output></div><input id="planMinutes" type="range" min="10" max="90" step="5" value="30" aria-label="Время на занятие"></div>
+                  <button class="plan-generate" id="generatePlan" type="button" data-i18n="generatePlan">✦ Создать мой план</button>
+                </div>
+              </div>
+              <div class="messages" id="chatMessages" aria-live="polite" aria-relevant="additions text"></div>
+              <form class="chat-form" id="chatForm">
+                <textarea class="chat-input" id="chatInput" rows="1" data-i18n-placeholder="chatPlaceholder" placeholder="Напишите сообщение или попросите объяснить правило…"></textarea>
+                <button class="chat-button mic" id="micButton" type="button" aria-label="Говорить" title="Говорить">🎙</button>
+                <button class="chat-button" id="sendButton" type="submit" aria-label="Отправить" title="Отправить">↑</button>
+              </form>
+              <div class="chat-options"><label class="tts-toggle"><input id="speakReplies" type="checkbox" checked><span data-i18n="speakReplies">Озвучивать ответы AI</span></label><span data-i18n="voiceNote">Голос распознаёт браузер; обработка зависит от выбранного браузера.</span></div>
+            </div>
+            <aside class="tutor-sidebar">
+              <p class="sidebar-label" data-i18n="quickTitle">Попробуйте начать</p>
+              <div class="quick-prompts">
+                <button class="quick-prompt" type="button" data-prompt="conversation" data-i18n="quickConversation">Давай поговорим о работе и повседневной жизни.</button>
+                <button class="quick-prompt" type="button" data-prompt="grammar" data-i18n="quickGrammar">Объясни Present Perfect простыми словами и дай упражнение.</button>
+                <button class="quick-prompt" type="button" data-prompt="writing" data-i18n="quickWriting">Помоги исправить мой текст и объясни главные ошибки.</button>
+              </div>
+              <p class="tutor-tip"><strong data-i18n="tutorTipLabel">Как помогает тьютор</strong><br><span data-i18n="tutorTipText">Мягко исправляет ошибки, объясняет правило и задаёт следующий вопрос для практики.</span></p>
+            </aside>
+          </div>
+        </div>
+        <p class="tutor-disclosure"><strong data-i18n="privacyLabel">Данные:</strong> <span data-i18n="privacyText">текст сообщений и распознанная речь отправляются в OpenAI API для ответа. Голос распознаёт браузер; обработка зависит от выбранного браузера. API-ключ хранится на локальном сервере; сайт не сохраняет историю чата.</span></p>
+      </div>
+    </section>
+
+    <section class="section frame-section" id="framework">
+      <div class="wrap">
+        <div class="section-head"><div><div class="section-kicker" data-i18n="frameKicker">01 / Рамка исследования</div><h2 class="section-title" data-i18n="frameTitle">Четыре направления.<br>Один честный вопрос.</h2></div><p class="section-intro" data-i18n="frameIntro">Вместо общего рейтинга технологий рассматриваем конкретные стороны обучения: что может поддержать AI, что даёт преподаватель и о чём важно спросить.</p></div>
+        <div class="lens-grid">
+          <article class="lens-card"><span class="lens-icon">Aa</span><div><div class="lens-id">01 / LANGUAGE</div><h3 data-i18n="lens1Title">Языковая практика</h3><p data-i18n="lens1Text">Лексика и грамматика: повторение, объяснение правил, примеры и работа с ошибками.</p></div></article>
+          <article class="lens-card"><span class="lens-icon">◉</span><div><div class="lens-id">02 / COMMUNICATION</div><h3 data-i18n="lens2Title">Говорение и письмо</h3><p data-i18n="lens2Text">Какие возможности дают диалоги, письменные задания, практика и обратная связь.</p></div></article>
+          <article class="lens-card"><span class="lens-icon">↗</span><div><div class="lens-id">03 / LEARNING</div><h3 data-i18n="lens3Title">Персонализация</h3><p data-i18n="lens3Text">Темп, подбор материалов, внимание к целям учащегося и доступность поддержки.</p></div></article>
+          <article class="lens-card"><span class="lens-icon">⌁</span><div><div class="lens-id">04 / INDEPENDENCE</div><h3 data-i18n="lens4Title">Гибкость и самостоятельность</h3><p data-i18n="lens4Text">Когда и как взрослые могут заниматься сами, а где полезны структура урока и помощь учителя.</p></div></article>
+        </div>
+        <div class="research-q"><div><small data-i18n="questionLabel">Главный исследовательский вопрос</small><p data-i18n="questionText">Где AI может быть полезен взрослому ученику, где важен преподаватель и как эти подходы дополняют друг друга?</p></div><span class="q-symbol">?</span></div>
+      </div>
+    </section>
+
+    <section class="section compare-section">
+      <div class="wrap">
+        <div class="section-head"><div><div class="section-kicker" data-i18n="compareKicker">02 / Сравнительная рамка</div><h2 class="section-title" data-i18n="compareTitle">Не выводы, а вопросы<br>для проверки.</h2></div><p class="section-intro" data-i18n="compareIntro">Примеры показывают, как можно построить сравнение. Это не подтверждённые преимущества и не результаты анкетирования.</p></div>
+        <div class="framework-note"><b>✳</b><span data-i18n="frameworkNote">Предполагаемые возможности сформулированы нейтрально. Опрос учителей поможет выяснить, какие из них они считают полезными, ограниченными или зависящими от ситуации.</span></div>
+        <div class="compare-grid">
+          <article class="compare-card"><header><b>01</b><h3 data-i18n="comp1Title">Лексика и грамматика</h3></header><div class="compare-content"><div class="compare-cell"><label data-i18n="aiRole">Возможная роль AI</label><p data-i18n="comp1Ai">Дополнительные упражнения, примеры и повторение в индивидуальном темпе.</p></div><div class="compare-cell"><label data-i18n="teacherRole">Возможная роль преподавателя</label><p data-i18n="comp1Teacher">Объяснение контекста, разбор типичных ошибок и уточнение непонятного.</p></div></div><div class="ask-row"><label data-i18n="askTeachers">Что спросить учителей</label><p data-i18n="comp1Ask">В каких заданиях AI экономит время, а где нужно объяснение человека?</p></div></article>
+          <article class="compare-card"><header><b>02</b><h3 data-i18n="comp2Title">Говорение и письмо</h3></header><div class="compare-content"><div class="compare-cell"><label data-i18n="aiRole">Возможная роль AI</label><p data-i18n="comp2Ai">Ролевые диалоги, черновики и дополнительные попытки практики.</p></div><div class="compare-cell"><label data-i18n="teacherRole">Возможная роль преподавателя</label><p data-i18n="comp2Teacher">Живое взаимодействие и обратная связь с учётом смысла и цели.</p></div></div><div class="ask-row"><label data-i18n="askTeachers">Что спросить учителей</label><p data-i18n="comp2Ask">Насколько цифровая практика помогает реальному общению?</p></div></article>
+          <article class="compare-card"><header><b>03</b><h3 data-i18n="comp3Title">Обратная связь</h3></header><div class="compare-content"><div class="compare-cell"><label data-i18n="aiRole">Возможная роль AI</label><p data-i18n="comp3Ai">Быстрый отклик и подсказки, качество которых зависит от инструмента.</p></div><div class="compare-cell"><label data-i18n="teacherRole">Возможная роль преподавателя</label><p data-i18n="comp3Teacher">Диалог об ошибке, возможность переспросить и получить пояснение.</p></div></div><div class="ask-row"><label data-i18n="askTeachers">Что спросить учителей</label><p data-i18n="comp3Ask">Как проверять точность, понятность и своевременность комментариев?</p></div></article>
+          <article class="compare-card"><header><b>04</b><h3 data-i18n="comp4Title">Гибкость и самостоятельность</h3></header><div class="compare-content"><div class="compare-cell"><label data-i18n="aiRole">Возможная роль AI</label><p data-i18n="comp4Ai">Практика по запросу, выбор темпа и возможность заниматься вне урока.</p></div><div class="compare-cell"><label data-i18n="teacherRole">Возможная роль преподавателя</label><p data-i18n="comp4Teacher">Учебный ритм, общие цели и поддержка регулярного прогресса.</p></div></div><div class="ask-row"><label data-i18n="askTeachers">Что спросить учителей</label><p data-i18n="comp4Ask">Каким учащимся и при каких условиях удобен каждый формат?</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section method-section" id="method">
+      <div class="wrap">
+        <div class="section-head"><div><div class="section-kicker" data-i18n="methodKicker">03 / Практическая часть</div><h2 class="section-title" data-i18n="methodTitle">Чётко определить,<br>кого и о чём спрашиваем.</h2></div><p class="section-intro" data-i18n="methodIntro">Здесь важно разделить целевую группу исследования и участников опроса: это не одна и та же группа людей.</p></div>
+        <div class="method-grid">
+          <article class="method-card"><span class="method-n">01</span><h3 data-i18n="method1Title">Целевая группа</h3><p data-i18n="method1Text">Взрослые учащиеся <strong>25–30 лет</strong>, осваивающие английский. На них направлена тема сравнения.</p></article>
+          <article class="method-card"><span class="method-n">02</span><h3 data-i18n="method2Title">Участники опроса</h3><p data-i18n="method2Text">Учителя английского языка <strong>школы №125 в Актобе</strong>. Их мнения составляют практическую часть проекта.</p></article>
+          <article class="method-card"><span class="method-n">03</span><h3 data-i18n="method3Title">Метод и темы</h3><p data-i18n="method3Text">Анкета об опыте и мнениях: преимущества, ограничения, полезность и условия применения обоих подходов.</p></article>
+        </div>
+        <div class="distinction"><div><small data-i18n="distinction1Label">Что исследуем</small><p data-i18n="distinction1Text">Сравнение подходов к изучению английского взрослыми 25–30 лет.</p></div><div><small data-i18n="distinction2Label">На чём основана практическая часть</small><p data-i18n="distinction2Text">Ответы учителей школы №125; сами ответы ещё нужно собрать и проанализировать.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section plan-section" id="plan">
+      <div class="wrap plan-layout">
+        <div class="plan-intro"><div class="section-kicker" data-i18n="planKicker">04 / План проекта</div><h2 class="section-title" data-i18n="planTitle">Пять этапов<br>до результата.</h2><p data-i18n="planIntro">Последовательный маршрут от исследовательского вопроса до рекомендаций, основанных на собранных ответах.</p><button class="button button-outline" id="copyPlan" type="button"><span data-i18n="copyButton">Скопировать план</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="7" y="7" width="9" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 7V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2" stroke="currentColor" stroke-width="1.5"/></svg></button><p class="copy-status" id="copyStatus" aria-live="polite"></p></div>
+        <div class="timeline" id="planText">
+          <article class="step"><span class="step-index">01</span><div><small data-i18n="step1Tag">Основа</small><h3 data-i18n="step1Title">Уточнить цель и исследовательские вопросы</h3><p data-i18n="step1Text">Закрепить возрастную группу, темы сравнения и границы выводов, которые можно сделать по мнению учителей.</p></div></article>
+          <article class="step"><span class="step-index">02</span><div><small data-i18n="step2Tag">Подготовка</small><h3 data-i18n="step2Title">Составить анкету</h3><p data-i18n="step2Text">Подготовить понятные вопросы об AI, традиционных занятиях, обратной связи, персонализации и самостоятельной практике.</p></div></article>
+          <article class="step"><span class="step-index">03</span><div><small data-i18n="step3Tag">Сбор мнений</small><h3 data-i18n="step3Title">Провести опрос учителей школы №125</h3><p data-i18n="step3Text">Собрать ответы преподавателей английского языка в Актобе и описать, кто участвовал и как проходил опрос.</p></div></article>
+          <article class="step"><span class="step-index">04</span><div><small data-i18n="step4Tag">Анализ</small><h3 data-i18n="step4Title">Сопоставить ответы по темам</h3><p data-i18n="step4Text">Выделить повторяющиеся мнения, различия и замеченные учителями условия полезного применения каждого подхода.</p></div></article>
+          <article class="step"><span class="step-index">05</span><div><small data-i18n="step5Tag">Вывод</small><h3 data-i18n="step5Title">Подготовить выводы и рекомендации</h3><p data-i18n="step5Text">Показать, где AI может дополнять уроки, где важна роль преподавателя и какие сочетания методов стоит рассмотреть.</p></div></article>
+          <div class="plan-caveat" data-i18n="planCaveat">Планируемая последовательность. Сроки, количество участников и результаты добавляются после уточнения и проведения опроса.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section outcome-section" id="outcome">
+      <div class="wrap outcome-grid">
+        <div><div class="section-kicker" data-i18n="outcomeKicker">05 / Практическая ценность</div><h2 data-i18n="outcomeTitle">Что даст это исследование?</h2><p data-i18n="outcomeIntro">Не универсальный ответ «что лучше», а более конкретная картина пользы, ограничений и возможного сотрудничества двух подходов.</p></div>
+        <div class="outcome-list">
+          <div class="outcome-item"><b>↗</b><span data-i18n="out1">Сводное сравнение по языковым навыкам и организации обучения.</span></div>
+          <div class="outcome-item"><b>◎</b><span data-i18n="out2">Представление взглядов учителей английского языка школы №125.</span></div>
+          <div class="outcome-item"><b>✳</b><span data-i18n="out3">Практические идеи, как сочетать самостоятельную AI-практику и занятия с преподавателем.</span></div>
+          <div class="outcome-item"><b>!</b><span data-i18n="out4">Честное описание ограничений опроса и границ применимости выводов.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="keywords"><div class="wrap keywords-inner"><h3 data-i18n="keywordsTitle">Ключевые понятия</h3><div class="tags"><span class="tag">AI-assisted learning</span><span class="tag" data-i18n="tag2">традиционное обучение</span><span class="tag" data-i18n="tag3">взрослые учащиеся</span><span class="tag" data-i18n="tag4">обратная связь</span><span class="tag" data-i18n="tag5">персонализация</span><span class="tag" data-i18n="tag6">самостоятельное обучение</span></div></div></section>
+  </main>
+  <footer><div class="wrap footer-inner"><span><strong data-i18n="footerBrand">Английский и AI</strong> · <span data-i18n="footerType">Исследовательский проект</span></span><span data-i18n="footerLine">Сравнить подходы · понять контекст · предложить сочетание</span></div></footer>
+
+  <script>
+    const translations = {
+      ru: {},
+      en: {
+        brandSub: 'Research project', brand: 'English & AI', navTutor: 'AI tutor', navMiniApp: 'Mini tool', navFramework: 'Focus areas', navMethod: 'Method', navPlan: 'Roadmap', navOutcome: 'Value',
+        eyebrow: 'Comparative study', heroTitle: 'AI and English:<br><em>what changes?</em>',
+        heroText: 'We explore how AI-assisted learning compares with traditional instruction for adults aged 25–30. The practical part is a questionnaire for English teachers at School No. 125 in Aktobe.',
+        audiencePill: 'Learner focus: ages 25–30', surveyPill: 'Teacher questionnaire · Aktobe', heroButton1: 'Explore the roadmap', heroButton2: 'How the study works',
+        stampOne: 'Understand teachers’ perspectives', stampTwo: 'Develop practical recommendations', loopEyebrow: 'Project logic', loopTitle: 'From teaching practice<br>to recommendations', loop1Title: 'Compare approaches', loop1Sub: 'Skills and learning conditions', loop2Title: 'Gather perspectives', loop2Sub: 'Questionnaire for English teachers', loop3Title: 'Suggest a combination', loop3Sub: 'AI practice and teacher guidance', loopNote: 'This is a research plan. Survey responses still need to be collected and analysed.',
+        heroFoot1: 'Study focus', heroFoot2: 'English learning among adults', heroFoot3: 'Practical setting', heroFoot4: 'School No. 125, Aktobe',
+        appKicker: 'Mini tool / Try it yourself', appTitle: 'Build a sample session.', appIntro: 'Choose a language skill and the time you have. Compare three ways to practise the same goal.',
+        appSkillLabel: '1 / Choose a skill', skillSpeaking: 'Speaking', skillVocabulary: 'Vocabulary', skillGrammar: 'Grammar', skillWriting: 'Writing', appTimeLabel: '2 / Time for practice', appTimeHint: 'One session', minuteUnit: 'min', appDisclaimer: 'An illustrative plan to explore the idea. It is not a personal assessment or a finding from the teacher survey.', appResultEyebrow: 'Options for your goal', appDemoTag: 'Demo · example', modeAi: 'With AI', modeTeacher: 'With a teacher', modeBlend: 'Blended format', appBottomNote: 'Blended learning idea: practise independently, then use the skill in a conversation with another person.',
+        tutorKicker: 'AI tutor / English practice', tutorTitle: 'Practise. Ask. Improve.', tutorIntro: 'Talk through voice or text, work on grammar, and improve your writing with an AI tutor.', tutorName: 'English practice coach', tutorChecking: 'Checking connection…', clearChat: 'New chat', modeConversation: 'Conversation', modeGrammar: 'Grammar', modeWriting: 'Writing', modePlan: 'My plan', builderTitle: 'A plan that fits your life', builderHint: 'Choose a goal and your available time. The tutor will build a schedule.', goalLabel: 'Main goal', goalSpeaking: 'Confident speaking', goalGrammar: 'Grammar', goalWriting: 'Writing', goalVocabulary: 'Vocabulary', goalBalanced: 'A bit of everything', levelLabel: 'My level', daysLabel: 'Days per week', weeksLabel: 'Plan length', weeks2: '2 weeks', weeks4: '4 weeks', weeks6: '6 weeks', weeks8: '8 weeks', minutesLabel: 'Time per session', generatePlan: '✦ Build my plan',
+        chatPlaceholder: 'Write a message or ask for a grammar explanation…', speakReplies: 'Read AI replies aloud', voiceNote: 'Your browser transcribes voice; processing depends on the browser.', quickTitle: 'Try a starter prompt', quickConversation: 'Let’s talk about work and everyday life.', quickGrammar: 'Explain the Present Perfect simply and give me an exercise.', quickWriting: 'Help me correct my text and explain the main mistakes.', tutorTipLabel: 'How the tutor helps', tutorTipText: 'It gently corrects errors, explains the rule, and asks a follow-up question for practice.', privacyLabel: 'Your data:', privacyText: 'Typed messages and recognised speech transcripts are sent to the OpenAI API for replies. Voice transcription is handled by the browser and depends on its processing policy. The API key stays on the local server; the site does not save chat history.',
+        micStart: 'Start voice input', sendMessage: 'Send message', chooseTutorMode: 'Choose tutor mode', checkingServer: 'Checking local tutor…', keyMissing: 'Add an API key to the local server to enable AI.', serverOffline: 'Start the local app server to use the tutor.', tutorReady: 'AI tutor is ready', tutorThinking: 'AI tutor is replying…', tutorError: 'Could not get a reply. Check the server and API key, then try again.', micUnsupported: 'Voice input is not supported here. You can type instead.', micDenied: 'Microphone could not start. Allow microphone access or type instead.', listening: 'Listening… speak in English',
+        welcomeConversation: 'Hi! I’m your English practice tutor. Let’s talk in English. What would you like to practise today?', welcomeGrammar: 'Tell me which grammar point is confusing, or ask me to explain one. I’ll give a short explanation and a small exercise.', welcomeWriting: 'Paste a short draft or tell me what you want to write. I’ll help improve it while keeping your meaning and voice.', welcomePlan: 'Tell me your goal, level, available minutes, and days per week. I will create a realistic English plan and adjust it when your schedule changes.',
+        starterConversation: 'Let’s practise English conversation. Ask me one question at a time about work and everyday life.', starterGrammar: 'Explain the Present Perfect in simple terms, then give me one short exercise.', starterWriting: 'I’ll share a short text. Correct it and explain the most important changes.',
+        phasePrompts: 'Set a prompt', phasePractice: 'Practise', phaseReview: 'Review',
+        frameKicker: '01 / Study framework', frameTitle: 'Four areas.<br>One focused question.', frameIntro: 'Rather than ranking technologies in general, we look at specific parts of learning: what AI may support, what a teacher brings, and what the survey should ask.',
+        lens1Title: 'Language practice', lens1Text: 'Vocabulary and grammar: review, explanations, examples, and working through errors.', lens2Title: 'Speaking and writing', lens2Text: 'What dialogue, writing tasks, practice, and feedback may offer learners.', lens3Title: 'Personalisation', lens3Text: 'Pace, choice of materials, learner goals, and access to support.', lens4Title: 'Flexibility and independence', lens4Text: 'When and how adults can study independently, and where lesson structure and teacher support may help.',
+        questionLabel: 'Main research question', questionText: 'Where can AI be useful to adult learners, where does a teacher matter, and how might the two approaches complement each other?',
+        compareKicker: '02 / Comparison framework', compareTitle: 'Questions to investigate,<br>not findings.', compareIntro: 'These examples show how the comparison can be structured. They are not confirmed advantages or questionnaire results.', frameworkNote: 'Possible affordances are described neutrally. The teacher questionnaire will explore which are seen as useful, limited, or dependent on the situation.',
+        comp1Title: 'Vocabulary and grammar', comp2Title: 'Speaking and writing', comp3Title: 'Feedback', comp4Title: 'Flexibility and independent learning', aiRole: 'Possible role of AI', teacherRole: 'Possible role of a teacher', askTeachers: 'Question for teachers',
+        comp1Ai: 'Extra exercises, examples, and practice at an individual pace.', comp1Teacher: 'Contextual explanations, review of common errors, and clarification.', comp1Ask: 'When can AI save practice time, and when is a human explanation needed?',
+        comp2Ai: 'Role-play dialogues, drafts, and additional chances to practise.', comp2Teacher: 'Live interaction and feedback that considers meaning and purpose.', comp2Ask: 'How well can digital practice support real communication?',
+        comp3Ai: 'Quick responses and hints, with quality depending on the tool.', comp3Teacher: 'A discussion of errors, with a chance to ask follow-up questions.', comp3Ask: 'How should feedback accuracy, clarity, and timing be assessed?',
+        comp4Ai: 'On-demand practice, flexible pacing, and study outside class.', comp4Teacher: 'A learning routine, shared goals, and support for steady progress.', comp4Ask: 'For which learners and under what conditions does each format work well?',
+        methodKicker: '03 / Practical component', methodTitle: 'Be clear about<br>who is asked what.', methodIntro: 'The study population and questionnaire respondents need to be distinguished: they are not the same group.',
+        method1Title: 'Learner focus', method1Text: 'Adult English learners aged <strong>25–30</strong>. They are the focus of the comparison.', method2Title: 'Questionnaire respondents', method2Text: 'English teachers at <strong>School No. 125 in Aktobe</strong>. Their views form the practical part of the project.', method3Title: 'Method and topics', method3Text: 'A questionnaire on experience and opinions: strengths, limitations, usefulness, and conditions for using both approaches.', distinction1Label: 'What the study examines', distinction1Text: 'Approaches to English learning among adults aged 25–30.', distinction2Label: 'Basis of the practical component', distinction2Text: 'Responses from School No. 125 teachers; responses still need to be collected and analysed.',
+        planKicker: '04 / Project roadmap', planTitle: 'Five steps<br>to a useful result.', planIntro: 'A clear path from the research question to recommendations grounded in the responses collected.', copyButton: 'Copy project plan',
+        step1Tag: 'Frame', step1Title: 'Refine the aim and research questions', step1Text: 'Confirm the age group, comparison topics, and what can reasonably be concluded from teachers’ views.', step2Tag: 'Prepare', step2Title: 'Draft the questionnaire', step2Text: 'Prepare clear questions about AI, traditional lessons, feedback, personalisation, and independent practice.', step3Tag: 'Gather views', step3Title: 'Survey teachers at School No. 125', step3Text: 'Collect responses from English teachers in Aktobe and describe who participated and how the survey was conducted.', step4Tag: 'Analyse', step4Title: 'Compare responses by topic', step4Text: 'Identify recurring views, differences, and the conditions teachers see as important for each approach.', step5Tag: 'Conclude', step5Title: 'Prepare conclusions and recommendations', step5Text: 'Show where AI may complement lessons, where the teacher’s role matters, and which combinations are worth considering.', planCaveat: 'Proposed sequence. Dates, participant numbers, and findings should be added after the questionnaire is finalised and conducted.',
+        outcomeKicker: '05 / Practical value', outcomeTitle: 'What will the study contribute?', outcomeIntro: 'Not a universal verdict on which approach is “better”, but a clearer account of usefulness, limitations, and ways the two approaches may work together.', out1: 'A structured comparison across language skills and learning conditions.', out2: 'A summary of English teachers’ perspectives at School No. 125.', out3: 'Practical ideas for combining independent AI practice with teacher-led lessons.', out4: 'A transparent account of survey limitations and the scope of the conclusions.', keywordsTitle: 'Key concepts', tag2: 'traditional learning', tag3: 'adult learners', tag4: 'feedback', tag5: 'personalisation', tag6: 'independent learning', footerBrand: 'English & AI', footerType: 'Research project', footerLine: 'Compare approaches · understand context · suggest a combination',
+        menuOpen: 'Open menu', menuClose: 'Close menu', copied: 'Project plan copied.', copyFailed: 'Copy is unavailable in this browser.'
+      }
+    };
+    const appActivities = {
+      ru: {
+        speaking: {
+          ai: 'Попросите AI разыграть бытовую или рабочую ситуацию. Ответьте вслух и отметьте фразу для повторения.',
+          teacher: 'Обсудите ситуацию с преподавателем: задайте уточняющий вопрос и получите обратную связь по произношению и смыслу.',
+          blend: 'Сначала отрепетируйте диалог с AI, затем обсудите ту же тему свободно с преподавателем или партнёром.'
+        },
+        vocabulary: {
+          ai: 'Попросите AI дать примеры целевых слов и устроить короткую проверку: вставьте их в собственные предложения.',
+          teacher: 'Используйте новые слова в беседе по теме; попросите пояснить сочетаемость и уместность выражений.',
+          blend: 'Повторите слова с карточками или AI-викториной, затем вспомните их и примените в разговоре с человеком.'
+        },
+        grammar: {
+          ai: 'Выберите одну конструкцию, выполните несколько коротких заданий и попросите объяснить исправления.',
+          teacher: 'Составьте собственные примеры и обсудите, как выбор грамматической формы меняет смысл.',
+          blend: 'Потренируйте конструкцию с AI, затем используйте её в свободном ответе и разберите примеры с учителем.'
+        },
+        writing: {
+          ai: 'Напишите короткий текст и попросите AI отметить неясные места. Отредактируйте черновик своими словами.',
+          teacher: 'Напишите текст для конкретного читателя и обсудите с преподавателем тон, структуру и цель.',
+          blend: 'Набросайте черновик самостоятельно, используйте AI для первичной проверки и обсудите важные правки с учителем.'
+        }
+      },
+      en: {
+        speaking: {
+          ai: 'Ask AI to role-play an everyday or work situation. Answer aloud and note one phrase to practise again.',
+          teacher: 'Discuss a situation with a teacher: ask follow-up questions and get feedback on pronunciation and meaning.',
+          blend: 'Rehearse a dialogue with AI, then discuss the same topic freely with a teacher or conversation partner.'
+        },
+        vocabulary: {
+          ai: 'Ask AI for examples of target words and a short quiz; use the words in sentences of your own.',
+          teacher: 'Use new terms in a topic discussion; ask about collocations and when each expression is appropriate.',
+          blend: 'Review words with flashcards or an AI quiz, then recall and use them in a conversation with someone.'
+        },
+        grammar: {
+          ai: 'Choose one structure, complete a few short exercises, and ask for explanations of suggested corrections.',
+          teacher: 'Create your own examples and discuss how the grammar choice changes the meaning.',
+          blend: 'Practise a structure with AI, use it in an open response, then review examples with a teacher.'
+        },
+        writing: {
+          ai: 'Write a short text and ask AI to flag unclear parts. Revise the draft in your own words.',
+          teacher: 'Write for a specific reader and discuss tone, structure, and purpose with a teacher.',
+          blend: 'Draft independently, use AI for an initial check, and discuss the most important revisions with a teacher.'
+        }
+      }
+    };
+    const timingLabels = {
+      ru: [['Задать ситуацию','Практика','Записать фразу'], ['Цель','Задание и разбор','Обратная связь'], ['AI-разминка','Разговор с человеком','Рефлексия']],
+      en: [['Set a prompt','Practise','Note a phrase'], ['Set a goal','Task and review','Feedback'], ['AI warm-up','Talk with someone','Reflect']]
+    };
+    let selectedSkill = 'speaking';
+    const originalText = new Map([...document.querySelectorAll('[data-i18n]')].map(el => [el.dataset.i18n, el.innerHTML]));
+    const originalPlaceholders = new Map([...document.querySelectorAll('[data-i18n-placeholder]')].map(el => [el.dataset.i18nPlaceholder, el.placeholder]));
+    let language = 'ru';
+    let tutorMode = 'conversation';
+    let tutorConversation = [];
+    let serviceState = 'checking';
+    let activeRecognition = null;
+    let voiceWillSend = false;
+    let recognizedSpeech = '';
+    const tutorGreetings = {
+      ru: {
+        conversation: 'Привет! Я помогу практиковать английский. Давай поговорим по-английски: что хочешь обсудить сегодня?',
+        grammar: 'Напиши, какая тема грамматики вызывает вопросы, или попроси объяснить правило. Я дам короткое объяснение и упражнение.',
+        writing: 'Вставь короткий черновик или расскажи, что хочешь написать. Помогу улучшить текст и сохранить твой смысл и стиль.',
+        plan: 'Выбери параметры плана выше, и я составлю расписание под твоё время. Если расписание изменится, просто напиши мне — перестрою план.'
+      },
+      en: {
+        conversation: 'Hi! I’m your English practice tutor. Let’s talk in English. What would you like to practise today?',
+        grammar: 'Tell me which grammar point is confusing, or ask me to explain one. I’ll give a short explanation and a small exercise.',
+        writing: 'Paste a short draft or tell me what you want to write. I’ll help improve it while keeping your meaning and voice.',
+        plan: 'Choose the plan settings above and I will create a schedule that fits your available time. If your schedule changes, just tell me and I will adapt it.'
+      }
+    };
+    const tutorStarters = {
+      conversation: 'Let’s practise English conversation. Ask me one question at a time about work and everyday life.',
+      grammar: 'Explain the Present Perfect in simple terms, then give me one short exercise.',
+      writing: 'I’ll share a short text. Correct it and explain the most important changes.'
+    };
+    function setTutorStatus(state) {
+      serviceState = state;
+      const keys = {
+        ru: { checking: 'Проверяю подключение…', ready: 'AI-тьютор готов', missing: 'Добавьте API-ключ на локальный сервер', offline: 'Запустите локальный сервер приложения', apiError: 'Сервер доступен, проверьте API и ключ', thinking: 'AI-тьютор отвечает…', listening: 'Слушаю… говорите по-английски' },
+        en: { checking: 'Checking connection…', ready: 'AI tutor is ready', missing: 'Add an API key to the local server', offline: 'Start the local app server', apiError: 'Server is running; check the API and key', thinking: 'AI tutor is replying…', listening: 'Listening… speak in English' }
+      };
+      document.getElementById('tutorStatus').textContent = keys[language][state];
+    }
+    function renderTutorConversation() {
+      const list = document.getElementById('chatMessages');
+      list.replaceChildren();
+      tutorConversation.forEach(message => {
+        const row = document.createElement('div');
+        row.className = `message ${message.role}`;
+        if (message.role === 'assistant') {
+          const icon = document.createElement('span');
+          icon.className = 'speaker';
+          icon.textContent = '✦';
+          row.append(icon);
+        }
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        bubble.textContent = message.text;
+        row.append(bubble);
+        list.append(row);
+      });
+      list.scrollTop = list.scrollHeight;
+    }
+    function resetTutorConversation() {
+      tutorConversation = [{ role: 'assistant', text: tutorGreetings[language][tutorMode] }];
+      renderTutorConversation();
+    }
+    function selectTutorMode(mode) {
+      tutorMode = mode;
+      document.querySelectorAll('[data-tutor-mode]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.tutorMode === mode)));
+      document.getElementById('planBuilder').hidden = mode !== 'plan';
+      resetTutorConversation();
+    }
+    function addLocalTutorMessage(text) {
+      tutorConversation.push({ role: 'assistant', text, local: true });
+      renderTutorConversation();
+    }
+    async function checkTutorServer() {
+      if (location.protocol === 'file:') { setTutorStatus('offline'); return; }
+      try {
+        const response = await fetch('/api/health');
+        const health = await response.json();
+        setTutorStatus(health.configured ? 'ready' : 'missing');
+      } catch { setTutorStatus('offline'); }
+    }
+    async function sendTutorMessage(options = {}) {
+      const input = document.getElementById('chatInput');
+      const typedText = input.value.trim();
+      const text = options.displayText || typedText;
+      const apiText = options.apiText || typedText;
+      if (!text || !apiText || document.getElementById('sendButton').disabled) return;
+      tutorConversation.push({ role: 'user', text, apiText });
+      renderTutorConversation();
+      input.value = '';
+      const sendButton = document.getElementById('sendButton');
+      sendButton.disabled = true;
+      setTutorStatus('thinking');
+      let serverResponded = false;
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mode: tutorMode, messages: tutorConversation.filter(message => !message.local).slice(-12).map(({ role, text, apiText }) => ({ role, content: apiText || text })) })
+        });
+        serverResponded = true;
+        const result = await response.json();
+        if (!response.ok) {
+          if (result.code === 'API_KEY_MISSING') setTutorStatus('missing');
+          throw new Error(result.code || 'REQUEST_FAILED');
+        }
+        const reply = String(result.reply || '').trim();
+        if (!reply) throw new Error('EMPTY_REPLY');
+        tutorConversation.push({ role: 'assistant', text: reply });
+        renderTutorConversation();
+        setTutorStatus('ready');
+        if (document.getElementById('speakReplies').checked && 'speechSynthesis' in window && reply.length < 650) {
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(reply);
+          utterance.lang = /[\u0400-\u04FF]/.test(reply) ? 'ru-RU' : 'en-US';
+          window.speechSynthesis.speak(utterance);
+        }
+      } catch {
+        const errorText = language === 'en'
+          ? 'I could not connect to the AI service. Start the local server, check that its API key is configured, and try again.'
+          : 'Не удалось связаться с AI. Запустите локальный сервер, проверьте API-ключ и попробуйте ещё раз.';
+        addLocalTutorMessage(errorText);
+        if (serviceState !== 'missing') setTutorStatus(serverResponded ? 'apiError' : 'offline');
+      } finally {
+        sendButton.disabled = false;
+        if (serviceState === 'thinking') setTutorStatus('ready');
+      }
+    }
+    async function startVoiceInput() {
+      const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!Recognition) {
+        addLocalTutorMessage(language === 'en' ? translations.en.micUnsupported : 'Распознавание речи здесь недоступно. Можно вводить текст с клавиатуры.');
+        return;
+      }
+      if (activeRecognition) { voiceWillSend = false; activeRecognition.stop(); return; }
+      activeRecognition = new Recognition();
+      activeRecognition.lang = 'en-US';
+      activeRecognition.continuous = false;
+      activeRecognition.interimResults = false;
+      voiceWillSend = true;
+      recognizedSpeech = '';
+      const micButton = document.getElementById('micButton');
+      activeRecognition.onstart = () => { micButton.classList.add('listening'); setTutorStatus('listening'); };
+      activeRecognition.onresult = event => {
+        recognizedSpeech = event.results[0][0].transcript;
+        document.getElementById('chatInput').value = recognizedSpeech;
+      };
+      activeRecognition.onerror = event => {
+        voiceWillSend = false;
+        if (event.error !== 'no-speech' && event.error !== 'aborted') addLocalTutorMessage(language === 'en' ? translations.en.micDenied : 'Не удалось запустить микрофон. Разрешите доступ или введите сообщение текстом.');
+      };
+      activeRecognition.onend = () => {
+        activeRecognition = null;
+        micButton.classList.remove('listening');
+        if (voiceWillSend && recognizedSpeech.trim()) sendTutorMessage();
+        else if (serviceState === 'listening') setTutorStatus('ready');
+        voiceWillSend = false;
+      };
+      try { activeRecognition.start(); }
+      catch { activeRecognition = null; voiceWillSend = false; micButton.classList.remove('listening'); addLocalTutorMessage(language === 'en' ? translations.en.micDenied : 'Не удалось запустить микрофон. Разрешите доступ или введите сообщение текстом.'); }
+    }
+    const sessionTime = document.getElementById('sessionTime');
+    function renderPlanMinutes() {
+      const unit = language === 'en' ? 'min' : 'мин';
+      document.getElementById('planMinutesValue').textContent = `${document.getElementById('planMinutes').value} ${unit}`;
+      document.getElementById('planMinutes').setAttribute('aria-label', language === 'en' ? 'Minutes available per study session' : 'Минут на занятие');
+    }
+    function generatePersonalPlan() {
+      if (tutorMode !== 'plan') selectTutorMode('plan');
+      const goalSelect = document.getElementById('planGoal');
+      const goal = goalSelect.value;
+      const level = document.getElementById('planLevel').value;
+      const days = Number(document.getElementById('planDays').value);
+      const weeks = Number(document.getElementById('planWeeks').value);
+      const minutes = Number(document.getElementById('planMinutes').value);
+      const goalLabel = goalSelect.selectedOptions[0].textContent;
+      const displayText = language === 'en'
+        ? `Build my ${weeks}-week English plan: ${goalLabel}, level ${level}, ${minutes} minutes a day, ${days} days a week.`
+        : `Составь план английского на ${weeks} недели: цель — ${goalLabel}; уровень ${level}; ${minutes} минут в день, ${days} дней в неделю.`;
+      const apiText = `Create a realistic ${weeks}-week English study plan for an adult learner aged 25–30. Self-estimated level: ${level}. Main goal: ${goal}. Study ${minutes} minutes per session, ${days} days each week. Respond in ${language === 'en' ? 'English' : 'Russian'}. Keep every session within ${minutes} minutes. Organize by week and study day, assign exact minutes to each activity, include spaced review, gradual progression, and a simple weekly progress check. Mix independent practice, useful AI exercises, and occasional real human speaking/writing practice when relevant. No paid-only resources. Keep the plan practical and concise. After the plan, invite the learner to report schedule changes so you can adapt it.`;
+      sendTutorMessage({ displayText, apiText });
+    }
+    function renderMiniApp() {
+      const minutes = Number(sessionTime.value);
+      const skillButton = document.querySelector(`[data-skill="${selectedSkill}"]`);
+      const skillName = skillButton.querySelector('[data-i18n]').textContent;
+      const unit = language === 'en' ? 'min' : 'мин';
+      document.getElementById('timeDisplay').textContent = `${minutes} ${unit}`;
+      document.getElementById('sessionTitle').textContent = `${skillName} · ${minutes} ${unit}`;
+
+      const content = appActivities[language][selectedSkill];
+      const activityIds = [['aiActivity','ai'], ['teacherActivity','teacher'], ['blendActivity','blend']];
+      activityIds.forEach(([id, mode]) => { document.getElementById(id).textContent = content[mode]; });
+
+      const fractions = [[.2,.65], [.2,.6], [.35,.5]];
+      const timingIds = ['aiTiming','teacherTiming','blendTiming'];
+      timingIds.forEach((id, index) => {
+        const first = Math.round(minutes * fractions[index][0]);
+        const second = Math.round(minutes * fractions[index][1]);
+        const parts = [first, second, minutes - first - second];
+        const container = document.getElementById(id);
+        const rows = timingLabels[language][index].map((label, phase) => {
+          const row = document.createElement('div');
+          row.className = 'time-phase';
+          const name = document.createElement('span');
+          name.textContent = label;
+          const time = document.createElement('strong');
+          time.textContent = `${parts[phase]} ${unit}`;
+          row.append(name, time);
+          return row;
+        });
+        container.replaceChildren(...rows);
+      });
+    }
+    function setLanguage(next) {
+      language = next;
+      document.documentElement.lang = next;
+      document.title = next === 'en' ? 'English & AI — Research Project' : 'Английский и AI — исследовательский проект';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        el.innerHTML = next === 'en' ? (translations.en[key] ?? originalText.get(key)) : originalText.get(key);
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        el.placeholder = next === 'en' ? (translations.en[key] ?? originalPlaceholders.get(key)) : originalPlaceholders.get(key);
+      });
+      document.querySelectorAll('[data-lang]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lang === next)));
+      const menuIsOpen = document.getElementById('navLinks').classList.contains('open');
+      document.getElementById('menuToggle').setAttribute('aria-label', next === 'en'
+        ? (menuIsOpen ? translations.en.menuClose : translations.en.menuOpen)
+        : (menuIsOpen ? 'Закрыть меню' : 'Открыть меню'));
+      document.getElementById('skillOptions').setAttribute('aria-label', next === 'en' ? 'Choose a skill' : 'Выберите навык');
+      sessionTime.setAttribute('aria-label', next === 'en' ? 'Session duration' : 'Длительность занятия');
+      document.querySelector('.tutor-modes').setAttribute('aria-label', next === 'en' ? translations.en.chooseTutorMode : 'Режим тьютора');
+      document.getElementById('micButton').setAttribute('aria-label', next === 'en' ? translations.en.micStart : 'Говорить');
+      document.getElementById('sendButton').setAttribute('aria-label', next === 'en' ? translations.en.sendMessage : 'Отправить');
+      document.getElementById('copyStatus').textContent = '';
+      setTutorStatus(serviceState);
+      renderMiniApp();
+      renderPlanMinutes();
+    }
+    document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.lang)));
+    document.querySelectorAll('[data-skill]').forEach(button => button.addEventListener('click', () => {
+      selectedSkill = button.dataset.skill;
+      document.querySelectorAll('[data-skill]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      renderMiniApp();
+    }));
+    sessionTime.addEventListener('input', renderMiniApp);
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', language === 'en' ? (open ? translations.en.menuClose : translations.en.menuOpen) : (open ? 'Закрыть меню' : 'Открыть меню'));
+      menuToggle.textContent = open ? '×' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', language === 'en' ? translations.en.menuOpen : 'Открыть меню');
+      menuToggle.textContent = '☰';
+    }));
+    document.getElementById('copyPlan').addEventListener('click', async () => {
+      const headings = [...document.querySelectorAll('.step h3')];
+      const plan = headings.map((step, i) => `${i + 1}. ${step.textContent}`).join('\n');
+      const status = document.getElementById('copyStatus');
+      try {
+        await navigator.clipboard.writeText(plan);
+        status.textContent = language === 'en' ? translations.en.copied : 'План скопирован.';
+      } catch {
+        status.textContent = language === 'en' ? translations.en.copyFailed : 'Не удалось скопировать автоматически.';
+      }
+    });
+    document.querySelectorAll('[data-tutor-mode]').forEach(button => button.addEventListener('click', () => selectTutorMode(button.dataset.tutorMode)));
+    document.getElementById('clearChat').addEventListener('click', () => selectTutorMode(tutorMode));
+    document.getElementById('chatForm').addEventListener('submit', event => { event.preventDefault(); sendTutorMessage(); });
+    document.getElementById('chatInput').addEventListener('keydown', event => {
+      if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) { event.preventDefault(); sendTutorMessage(); }
+    });
+    document.getElementById('micButton').addEventListener('click', startVoiceInput);
+    document.getElementById('planMinutes').addEventListener('input', renderPlanMinutes);
+    document.getElementById('generatePlan').addEventListener('click', generatePersonalPlan);
+    document.querySelectorAll('[data-prompt]').forEach(button => button.addEventListener('click', () => {
+      const mode = button.dataset.prompt;
+      selectTutorMode(mode);
+      document.getElementById('chatInput').value = tutorStarters[mode];
+      sendTutorMessage();
+    }));
+    selectTutorMode(tutorMode);
+    checkTutorServer();
+    renderMiniApp();
+  </script>
+</body>
+</html>
