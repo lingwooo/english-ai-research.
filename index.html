@@ -443,7 +443,7 @@
             </aside>
           </div>
         </div>
-        <p class="tutor-disclosure"><strong data-i18n="privacyLabel">Данные:</strong> <span data-i18n="privacyText">текст сообщений и распознанная речь отправляются в OpenAI API для ответа. Голос распознаёт браузер; обработка зависит от выбранного браузера. API-ключ хранится на локальном сервере; сайт не сохраняет историю чата.</span></p>
+        <p class="tutor-disclosure"><strong data-i18n="privacyLabel">Данные:</strong> <span data-i18n="privacyText">В опубликованной версии GitHub Pages AI-тьютор пока не подключён. После подключения текст сообщений и распознанная речь будут отправляться в OpenAI API. API-ключ должен храниться на сервере; сайт не сохраняет историю чата.</span></p>
       </div>
     </section>
 
@@ -528,8 +528,8 @@
         appKicker: 'Mini tool / Try it yourself', appTitle: 'Build a sample session.', appIntro: 'Choose a language skill and the time you have. Compare three ways to practise the same goal.',
         appSkillLabel: '1 / Choose a skill', skillSpeaking: 'Speaking', skillVocabulary: 'Vocabulary', skillGrammar: 'Grammar', skillWriting: 'Writing', appTimeLabel: '2 / Time for practice', appTimeHint: 'One session', minuteUnit: 'min', appDisclaimer: 'An illustrative plan to explore the idea. It is not a personal assessment or a finding from the teacher survey.', appResultEyebrow: 'Options for your goal', appDemoTag: 'Demo · example', modeAi: 'With AI', modeTeacher: 'With a teacher', modeBlend: 'Blended format', appBottomNote: 'Blended learning idea: practise independently, then use the skill in a conversation with another person.',
         tutorKicker: 'AI tutor / English practice', tutorTitle: 'Practise. Ask. Improve.', tutorIntro: 'Talk through voice or text, work on grammar, and improve your writing with an AI tutor.', tutorName: 'English practice coach', tutorChecking: 'Checking connection…', clearChat: 'New chat', modeConversation: 'Conversation', modeGrammar: 'Grammar', modeWriting: 'Writing', modePlan: 'My plan', builderTitle: 'A plan that fits your life', builderHint: 'Choose a goal and your available time. The tutor will build a schedule.', goalLabel: 'Main goal', goalSpeaking: 'Confident speaking', goalGrammar: 'Grammar', goalWriting: 'Writing', goalVocabulary: 'Vocabulary', goalBalanced: 'A bit of everything', levelLabel: 'My level', daysLabel: 'Days per week', weeksLabel: 'Plan length', weeks2: '2 weeks', weeks4: '4 weeks', weeks6: '6 weeks', weeks8: '8 weeks', minutesLabel: 'Time per session', generatePlan: '✦ Build my plan',
-        chatPlaceholder: 'Write a message or ask for a grammar explanation…', speakReplies: 'Read AI replies aloud', voiceNote: 'Your browser transcribes voice; processing depends on the browser.', quickTitle: 'Try a starter prompt', quickConversation: 'Let’s talk about work and everyday life.', quickGrammar: 'Explain the Present Perfect simply and give me an exercise.', quickWriting: 'Help me correct my text and explain the main mistakes.', tutorTipLabel: 'How the tutor helps', tutorTipText: 'It gently corrects errors, explains the rule, and asks a follow-up question for practice.', privacyLabel: 'Your data:', privacyText: 'Typed messages and recognised speech transcripts are sent to the OpenAI API for replies. Voice transcription is handled by the browser and depends on its processing policy. The API key stays on the local server; the site does not save chat history.',
-        micStart: 'Start voice input', sendMessage: 'Send message', chooseTutorMode: 'Choose tutor mode', checkingServer: 'Checking local tutor…', keyMissing: 'Add an API key to the local server to enable AI.', serverOffline: 'Start the local app server to use the tutor.', tutorReady: 'AI tutor is ready', tutorThinking: 'AI tutor is replying…', tutorError: 'Could not get a reply. Check the server and API key, then try again.', micUnsupported: 'Voice input is not supported here. You can type instead.', micDenied: 'Microphone could not start. Allow microphone access or type instead.', listening: 'Listening… speak in English',
+        chatPlaceholder: 'Write a message or ask for a grammar explanation…', speakReplies: 'Read AI replies aloud', voiceNote: 'Your browser transcribes voice; processing depends on the browser.', quickTitle: 'Try a starter prompt', quickConversation: 'Let’s talk about work and everyday life.', quickGrammar: 'Explain the Present Perfect simply and give me an exercise.', quickWriting: 'Help me correct my text and explain the main mistakes.', tutorTipLabel: 'How the tutor helps', tutorTipText: 'It gently corrects errors, explains the rule, and asks a follow-up question for practice.', privacyLabel: 'Your data:', privacyText: 'On this GitHub Pages version the AI tutor is not connected yet. When enabled, typed messages and recognised speech transcripts will be sent to the OpenAI API. The API key must stay on a server; chat history is not saved by this site.',
+        micStart: 'Start voice input', sendMessage: 'Send message', chooseTutorMode: 'Choose tutor mode', checkingServer: 'Checking local tutor…', keyMissing: 'Add an API key to the local server to enable AI.', serverOffline: 'Start the local app server to use the tutor.', staticOnly: 'Website is online; AI tutor needs a server connection.', tutorReady: 'AI tutor is ready', tutorThinking: 'AI tutor is replying…', tutorError: 'Could not get a reply. Check the server and API key, then try again.', hostedTutorUnavailable: 'The AI tutor needs a secure server and is not enabled on this static website yet.', micUnsupported: 'Voice input is not supported here. You can type instead.', micDenied: 'Microphone could not start. Allow microphone access or type instead.', listening: 'Listening… speak in English',
         welcomeConversation: 'Hi! I’m your English practice tutor. Let’s talk in English. What would you like to practise today?', welcomeGrammar: 'Tell me which grammar point is confusing, or ask me to explain one. I’ll give a short explanation and a small exercise.', welcomeWriting: 'Paste a short draft or tell me what you want to write. I’ll help improve it while keeping your meaning and voice.', welcomePlan: 'Tell me your goal, level, available minutes, and days per week. I will create a realistic English plan and adjust it when your schedule changes.',
         starterConversation: 'Let’s practise English conversation. Ask me one question at a time about work and everyday life.', starterGrammar: 'Explain the Present Perfect in simple terms, then give me one short exercise.', starterWriting: 'I’ll share a short text. Correct it and explain the most important changes.',
         phasePrompts: 'Set a prompt', phasePractice: 'Practise', phaseReview: 'Review',
@@ -629,11 +629,12 @@
       grammar: 'Explain the Present Perfect in simple terms, then give me one short exercise.',
       writing: 'I’ll share a short text. Correct it and explain the most important changes.'
     };
+    const isGitHubPages = location.hostname.endsWith('.github.io');
     function setTutorStatus(state) {
       serviceState = state;
       const keys = {
-        ru: { checking: 'Проверяю подключение…', ready: 'AI-тьютор готов', missing: 'Добавьте API-ключ на локальный сервер', offline: 'Запустите локальный сервер приложения', apiError: 'Сервер доступен, проверьте API и ключ', thinking: 'AI-тьютор отвечает…', listening: 'Слушаю… говорите по-английски' },
-        en: { checking: 'Checking connection…', ready: 'AI tutor is ready', missing: 'Add an API key to the local server', offline: 'Start the local app server', apiError: 'Server is running; check the API and key', thinking: 'AI tutor is replying…', listening: 'Listening… speak in English' }
+        ru: { checking: 'Проверяю подключение…', ready: 'AI-тьютор готов', missing: 'Добавьте API-ключ на локальный сервер', offline: 'Запустите локальный сервер приложения', staticOnly: 'Сайт опубликован; для AI нужен сервер', apiError: 'Сервер доступен, проверьте API и ключ', thinking: 'AI-тьютор отвечает…', listening: 'Слушаю… говорите по-английски' },
+        en: { checking: 'Checking connection…', ready: 'AI tutor is ready', missing: 'Add an API key to the local server', offline: 'Start the local app server', staticOnly: 'Website is online; AI needs a server', apiError: 'Server is running; check the API and key', thinking: 'AI tutor is replying…', listening: 'Listening… speak in English' }
       };
       document.getElementById('tutorStatus').textContent = keys[language][state];
     }
@@ -673,6 +674,7 @@
     }
     async function checkTutorServer() {
       if (location.protocol === 'file:') { setTutorStatus('offline'); return; }
+      if (isGitHubPages) { setTutorStatus('staticOnly'); return; }
       try {
         const response = await fetch('/api/health');
         const health = await response.json();
@@ -716,11 +718,13 @@
           window.speechSynthesis.speak(utterance);
         }
       } catch {
-        const errorText = language === 'en'
-          ? 'I could not connect to the AI service. Start the local server, check that its API key is configured, and try again.'
-          : 'Не удалось связаться с AI. Запустите локальный сервер, проверьте API-ключ и попробуйте ещё раз.';
+        const errorText = isGitHubPages
+          ? (language === 'en' ? translations.en.hostedTutorUnavailable : 'AI-тьютор требует защищённого сервера и пока не подключён к этой версии сайта.')
+          : (language === 'en'
+            ? 'I could not connect to the AI service. Start the local server, check that its API key is configured, and try again.'
+            : 'Не удалось связаться с AI. Запустите локальный сервер, проверьте API-ключ и попробуйте ещё раз.');
         addLocalTutorMessage(errorText);
-        if (serviceState !== 'missing') setTutorStatus(serverResponded ? 'apiError' : 'offline');
+        if (serviceState !== 'missing') setTutorStatus(serverResponded ? 'apiError' : (isGitHubPages ? 'staticOnly' : 'offline'));
       } finally {
         sendButton.disabled = false;
         if (serviceState === 'thinking') setTutorStatus('ready');
