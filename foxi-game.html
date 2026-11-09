@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Забег Фокси</title>
+<style>
+  * { box-sizing: border-box }
+  body { margin: 0; padding: 24px; font: 16px Arial, sans-serif; color: #f6f8ee; background: #172b2c }
+  main { max-width: 900px; margin: auto; overflow: hidden; border-radius: 22px; background: #233a36; box-shadow: 0 20px 60px #08151488 }
+  header, footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 22px }
+  header { flex-wrap: wrap; background: #183d34 }
+  h1 { margin: 0; font-size: 24px }
+  .stats { display: flex; flex-wrap: wrap; gap: 9px }
+  .pill, button { border: 0; border-radius: 12px; padding: 10px 14px; font: inherit }
+  .pill { background: #ffffff18 }
+  button { cursor: pointer; font-weight: 700 }
+  button:disabled { cursor: default; opacity: .65 }
+  #fullscreen, #start { color: #17382e; background: #d4f174 }
+  .question { padding: 20px 22px; color: #243a31; background: #fbfcf5 }
+  .question-top { display: flex; justify-content: space-between; color: #627651; font-size: 14px; font-weight: 700 }
+  #clue { margin: 14px 0; font: 24px Georgia, serif }
+  #slots { display: flex; flex-wrap: wrap; gap: 7px }
+  .slot { padding: 7px 10px; border: 1px dashed #a9b69c; border-radius: 9px; color: #899286 }
+  .slot.filled { border-style: solid; background: #eaf3d9; color: #294b37 }
+  .progress { height: 6px; margin-top: 14px; overflow: hidden; border-radius: 9px; background: #e3e8dc }
+  #bar { width: 0; height: 100%; background: #9ec552; transition: width .25s }
+  #track { position: relative; height: 310px; overflow: hidden; perspective: 700px; background: linear-gradient(#506a77,#263d3b 70%,#172822) }
+  #track::after { position: absolute; inset: 0; z-index: 1; pointer-events: none; content: ""; background: repeating-linear-gradient(0deg,transparent 0 42px,#d7f3bd24 43px 45px) }
+  .lanes { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3,1fr) }
+  .lane { position: relative; display: flex; align-items: center; justify-content: center; border-right: 1px solid #e6ffd022 }
+  .choice { position: relative; z-index: 2; width: 88%; min-height: 70px; color: #263d31; background: #f4f7e9; box-shadow: 0 7px 0 #809c50, 0 14px 25px #0006; font-size: clamp(15px,3vw,21px); transform: perspective(500px) rotateX(8deg) }
+  .lane.selected .choice { outline: 4px solid #d4f174 }
+  #fox { position: absolute; z-index: 3; bottom: 8px; left: 50%; font-size: 58px; transform: translateX(-50%); transition: left .25s, transform .2s }
+  #fox.jump { transform: translate(-50%,-85px) scale(1.15) }
+  .hazard, .star { position: absolute; z-index: 2; top: 0; left: 50%; transform: translateX(-50%); animation: fall 5s linear forwards }
+  .hazard { color: #ff8065; font-size: 38px }
+  .star { color: #ffdb65; font-size: 36px; animation-duration: 6s }
+  @keyframes fall { to { top: 78%; transform: translateX(-50%) scale(1.5) rotate(180deg) } }
+  footer { color: #d3dfd3; font-size: 14px }
+  #message { flex: 1 }
+  @media (max-width:600px) {
+    body { padding: 8px }
+    header, footer { padding: 14px }
+    h1 { font-size: 20px }
+    #track { height: 270px }
+    #clue { font-size: 20px }
+    .choice { padding: 8px 4px; font-size: 15px }
+  }
+</style>
+</head>
+<body>
+<main id="game">
+  <header>
+    <h1>🦊 Забег Фокси</h1>
+    <div class="stats">
+      <span class="pill" id="score">✦ 0</span>
+      <span class="pill" id="lives">♥ ♥ ♥</span>
+      <span class="pill" id="combo">⚡ Комбо ×0</span>
+      <button id="fullscreen">⛶ На весь экран</button>
+    </div>
+  </header>
+
+  <section class="question">
+    <div class="question-top"><span id="round">Фраза 1</span><span id="step">Слово 1</span></div>
+    <p id="clue"></p>
+    <div id="slots"></div>
+    <div class="progress"><div id="bar"></div></div>
+  </section>
+
+  <section id="track">
+    <div class="lanes" id="lanes"></div>
+    <div id="fox">🦊</div>
+  </section>
+
+  <footer>
+    <span id="message">Собирай слова по порядку и уворачивайся от ловушек.</span>
+    <button id="start">Начать игру</button>
+  </footer>
+</main>
+
+<script>
+const phrases = [
+  { ru: "Я часто проверяю почту перед завтраком.", words: ["I","often","check","my","email","before","breakfast."] },
+  { ru: "Не могли бы вы отправить мне файл?", words: ["Could","you","send","me","the","file?"] },
+  { ru: "Она каждый день ездит на работу на автобусе.", words: ["She","takes","the","bus","to","work","every","day."] },
+  { ru: "Мы закончили отчёт сегодня до обеда.", words: ["We","finished","the","report","before","lunch","today."] }
+];
+const wordBank = ["am","is","are","the","a","to","at","in","on","you","we","they","work","email","send","from","after","today","often","will","can","my","your","report"];
+let round = 0, step = 0, score = 0, lives = 3, streak = 0, lane = 1;
+let playing = false, jumping = false, locked = false, misses = 0;
+let options = [], hazardTimer, starTimer;
+
+const $ = id => document.getElementById(id);
+function shuffled(items) { return [...items].sort(() => Math.random() - .5) }
+
+function makeOptions() {
+  const answer = phrases[round].words[step];
+  const clean = word => word.toLowerCase().replace(/[.!?]/g, "");
+  const wrong = wordBank.filter(word =>
+    clean(word) !== clean(answer) &&
+    !phrases[round].words.some(part => clean(part) === clean(word))
+  );
+  options = shuffled([answer, ...shuffled(wrong).slice(0, 2)]);
+}
+
+function draw() {
+  const phrase = phrases[Math.min(round, phrases.length - 1)];
+  $("score").textContent = "✦ " + score;
+  $("lives").textContent = "♥ ".repeat(lives) + "♡ ".repeat(3 - lives);
+  $("combo").textContent = "⚡ Комбо ×" + streak;
+  $("round").textContent = playing ? "Фраза " + (round + 1) + " / " + phrases.length : "Игра Фокси";
+  $("step").textContent = "Слово " + Math.min(step + 1, phrase.words.length) + " / " + phrase.words.length;
+  $("clue").textContent = phrase.ru;
+
+  $("slots").replaceChildren(...phrase.words.map((word, i) => {
+    const slot = document.createElement("span");
+    slot.className = "slot" + (i < step ? " filled" : "");
+    slot.textContent = i < step ? word : "···";
+    return slot;
+  }));
+  $("bar").style.width = Math.round(step / phrase.words.length * 100) + "%";
+
+  $("lanes").replaceChildren(...[0,1,2].map(i => {
+    const box = document.createElement("div");
+    box.className = "lane" + (i === lane ? " selected" : "");
+    const button = document.createElement("button");
+    button.className = "choice";
+    button.textContent = options[i] || "";
+    button.disabled = !playing || locked;
+    button.onclick = () => choose(i);
+    box.append(button);
+    return box;
+  }));
+  $("fox").style.left = (16.66 + lane * 33.34) + "%";
+  $("start").hidden = playing;
+}
+
+function choose(i) {
+  if (!playing || locked) return;
+  lane = i;
+  const answer = phrases[round].words[step];
+  if (options[i] !== answer) {
+    streak = 0;
+    misses++;
+    $("message").textContent = misses > 1 ? "Подсказка: нужно слово «" + answer + "»." : "Почти! Попробуй ещё раз.";
+    draw();
+    return;
+  }
+
+  const points = 15 + Math.min(streak, 8) * 5;
+  score += points;
+  streak++;
+  step++;
+  misses = 0;
+  locked = true;
+
+  if (step === phrases[round].words.length) {
+    score += 100;
+    $("message").textContent = "Фраза собрана! +100 бонусных очков ✨";
+  } else {
+    $("message").textContent = "Отлично! +" + points + " · Комбо ×" + streak;
+    makeOptions();
+  }
+  draw();
+
+  setTimeout(() => {
+    if (step === phrases[round].words.length) {
+      round++;
+      step = 0;
+      if (round === phrases.length) {
+        playing = false;
+        $("message").textContent = "Финиш! Твой счёт: " + score;
+      } else {
+        makeOptions();
+      }
+    }
+    locked = false;
+    draw();
+  }, step === phrases[Math.min(round, phrases.length - 1)].words.length ? 900 : 350);
+}
+
+function jump() {
+  if (!playing || jumping) return;
+  jumping = true;
+  $("fox").classList.add("jump");
+  setTimeout(() => { jumping = false; $("fox").classList.remove("jump"); }, 700);
+}
+
+function spawn(item, className, duration, points) {
+  if (!playing) return;
+  const target = Math.floor(Math.random() * 3);
+  const object = document.createElement("span");
+  object.className = className;
+  object.textContent = item;
+  $("lanes").children[target].append(object);
+  object.addEventListener("animationend", () => {
+    object.remove();
+    if (!playing) return;
+    if (lane === target && className === "hazard" && !jumping) {
+      lives--;
+      streak = 0;
+      $("message").textContent = "Ой! Перепрыгни ловушку или смени дорожку.";
+      if (!lives) {
+        playing = false;
+        clearInterval(hazardTimer);
+        clearInterval(starTimer);
+        $("message").textContent = "Забег окончен. Счёт: " + score;
+      }
+    } else if (lane === target && className === "star") {
+      score += points;
+      $("message").textContent = "Звезда поймана! +" + points + " ✨";
+    } else if (className === "hazard") score += 25;
+    draw();
+  });
+}
+
+function start() {
+  clearInterval(hazardTimer);
+  clearInterval(starTimer);
+  round = 0; step = 0; score = 0; lives = 3; streak = 0; lane = 1;
+  misses = 0; playing = true; locked = false;
+  $("message").textContent = "Выбирай следующее слово и следи за ловушками!";
+  makeOptions();
+  draw();
+  hazardTimer = setInterval(() => spawn("!", "hazard", 5000, 0), 4800);
+  starTimer = setInterval(() => spawn("✦", "star", 6000, 50), 7000);
+}
+
+$("start").onclick = start;
+$("fullscreen").onclick = async () => {
+  if (document.fullscreenElement) await document.exitFullscreen();
+  else await $("game").requestFullscreen?.();
+};
+
+document.addEventListener("keydown", event => {
+  if (!playing) return;
+  if (event.key === "ArrowLeft" || event.key.toLowerCase() === "a") lane = Math.max(0, lane - 1);
+  else if (event.key === "ArrowRight" || event.key.toLowerCase() === "d") lane = Math.min(2, lane + 1);
+  else if (event.key === "ArrowUp" || event.code === "Space") { event.preventDefault(); jump(); }
+  else if (event.key === "Enter") choose(lane);
+  else return;
+  draw();
+});
+
+makeOptions();
+draw();
+</script>
+</body>
+</html>

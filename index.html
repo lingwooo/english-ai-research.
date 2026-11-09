@@ -73,102 +73,10 @@
     .hero-foot { display: flex; justify-content: space-between; gap: 18px; margin-top: 48px; padding-top: 17px; border-top: 1px solid #dde2d9; color: #7e8982; font-size: 9px; }
     .hero-foot strong { color: #47564f; font-weight: 800; }
     .runner-section { background: #e9e4fa; }
-    .runner-shell { overflow: hidden; border: 1px solid #d6d1e8; border-radius: 22px; background: var(--white); box-shadow: 0 24px 65px rgba(43,38,76,.09); }
-    .runner-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 17px 21px; background: var(--forest); color: white; }
-    .runner-brand { display: flex; align-items: center; gap: 11px; }
-    .runner-logo { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 12px; background: var(--lime); color: var(--forest); font-size: 19px; }
-    .runner-brand strong { display: block; font: 500 20px/1.1 var(--serif); }
-    .runner-brand small { display: block; margin-top: 4px; color: #c8d6ce; font-size: 8px; }
-    .runner-stats { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px; }
-    .runner-stat { padding: 7px 10px; border: 1px solid rgba(255,255,255,.18); border-radius: 99px; color: #f2f4ed; font-size: 9px; font-weight: 800; white-space: nowrap; }
-    .runner-stat.slow { border-color: rgba(212,241,116,.45); color: var(--lime); }
-    .runner-fullscreen { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; border: 1px solid rgba(255,255,255,.3); border-radius: 99px; background: rgba(255,255,255,.08); color: #fff; font-size: 9px; font-weight: 800; white-space: nowrap; cursor: pointer; }
-    .runner-fullscreen:hover { background: rgba(255,255,255,.17); }
-    .runner-fullscreen span:first-child { font-size: 13px; }
-    .runner-question { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 5px 20px; padding: 18px 22px 15px; background: #fcfcf8; }
-    .runner-round { color: #7b70ad; font-size: 8px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
-    .runner-sentence { grid-column: 1; margin: 0; color: #263b31; font: 500 clamp(23px,3vw,34px)/1.2 var(--serif); letter-spacing: -.025em; }
-    .runner-hint { grid-column: 1; margin: 0; color: #788078; font-size: 9px; line-height: 1.6; }
-    .runner-translation { grid-column: 2; grid-row: 1 / span 3; max-width: 190px; color: #8a8e84; text-align: right; font-size: 9px; line-height: 1.55; }
-    .runner-track { --runner-position: 50%; position: relative; min-height: 390px; overflow: hidden; isolation: isolate; background: #142d31; perspective: 900px; }
-    .runner-scene { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; }
-    .runner-road-grid { position: absolute; z-index: 1; top: 27%; left: -32%; width: 164%; height: 112%; overflow: hidden; transform: perspective(430px) rotateX(64deg); transform-origin: top center; }
-    .runner-road-grid::before { position: absolute; inset: 0; background-image: linear-gradient(rgba(196,244,188,.34) 1px,transparent 1px),linear-gradient(90deg,rgba(196,244,188,.22) 1px,transparent 1px); background-size: 100% 42px,72px 100%; content: ""; animation: runner-grid-flow 1.5s linear infinite; }
-    .runner-track::before { position: absolute; z-index: 2; inset: 0; background: linear-gradient(180deg,rgba(17,32,40,.02) 12%,rgba(16,34,38,.12) 45%,rgba(8,26,24,.66) 100%); content: ""; pointer-events: none; }
-    .runner-track::after { position: absolute; z-index: 2; inset: 0; background: linear-gradient(90deg,rgba(8,22,24,.28),transparent 19% 81%,rgba(8,22,24,.28)); content: ""; pointer-events: none; }
-    .runner-lane { position: absolute; z-index: 3; top: 0; bottom: 0; display: flex; width: 33.333%; align-items: center; justify-content: center; min-width: 0; }
-    .runner-lane[data-runner-lane="0"] { left: 0; }
-    .runner-lane[data-runner-lane="1"] { left: 33.333%; }
-    .runner-lane[data-runner-lane="2"] { left: 66.666%; }
-    .runner-lane.is-selected .runner-lane-label { border-color: rgba(212,241,116,.8); background: rgba(212,241,116,.2); color: #f5ffcd; }
-    .runner-lane.is-selected .runner-choice:not(:disabled) { outline: 2px solid rgba(212,241,116,.68); outline-offset: 4px; }
-    .runner-hazard { position: absolute; z-index: 2; top: 8%; left: 50%; display: grid; width: 58px; height: 47px; place-items: center; border: 3px solid #ffc17c; border-radius: 11px 11px 8px 8px; background: linear-gradient(145deg,#ff9562,#d84d48 62%,#852e44); box-shadow: 0 0 20px rgba(255,112,82,.76),inset 0 2px 5px rgba(255,255,255,.4); color: white; font-size: 20px; font-weight: 950; transform: translateX(-50%) scale(.24); transform-origin: center; animation: runner-hazard-approach 4.2s linear forwards; pointer-events: none; }
-    .runner-hazard::before,.runner-hazard::after { position: absolute; top: 4px; bottom: 4px; width: 5px; border-radius: 4px; background: repeating-linear-gradient(180deg,#fff4ce 0 5px,transparent 5px 10px); content: ""; }
-    .runner-hazard::before { left: 5px; }
-    .runner-hazard::after { right: 5px; }
-    .runner-track.is-slow .runner-hazard { animation-duration: 6.4s; }
-    .runner-track.is-sprint .runner-hazard { animation-duration: 1.7s; }
-    .runner-track.is-hit { animation: runner-hit .3s ease-in-out; }
-    .runner-lane-label { position: absolute; top: 13px; padding: 4px 8px; border: 1px solid rgba(231,250,220,.22); border-radius: 99px; background: rgba(20,44,40,.36); color: rgba(231,242,226,.76); font-size: 8px; font-weight: 900; letter-spacing: .14em; backdrop-filter: blur(7px); }
-    .runner-choice { position: relative; z-index: 1; width: min(91%,240px); min-height: 78px; padding: 12px 9px; border: 1px solid rgba(244,255,237,.94); border-top: 5px solid #d4f174; border-radius: 15px; background: linear-gradient(145deg,#fffefa,#e8f2da); color: #263d31; box-shadow: 0 8px 0 #7f9b4f,0 23px 34px rgba(4,18,16,.38),inset 0 1px 0 #fff; font: 800 clamp(13px,2.1vw,18px)/1.2 var(--sans); overflow-wrap: anywhere; cursor: pointer; transform-style: preserve-3d; transform: perspective(700px) rotateX(11deg) rotateY(7deg) translateY(-4px); transition: transform .22s, border-color .2s, background .2s, box-shadow .2s; }
-    .runner-lane[data-runner-lane="1"] .runner-choice { transform: perspective(700px) rotateX(11deg) scale(1.04) translateY(-20px); }
-    .runner-lane[data-runner-lane="2"] .runner-choice { transform: perspective(700px) rotateX(11deg) rotateY(-7deg) translateY(-4px); }
-    .runner-choice::before { position: absolute; top: -24px; left: 9%; width: 82%; height: 16px; border: 3px solid #cbff82; border-bottom: 0; border-radius: 11px 11px 0 0; content: ""; filter: drop-shadow(0 0 7px rgba(201,255,130,.82)); }
-    .runner-track.is-slow .runner-choice:not(:disabled) { animation: gate-float 4.8s ease-in-out infinite; }
-    .runner-lane[data-runner-lane="1"] .runner-choice { animation-delay: -1.6s; }
-    .runner-lane[data-runner-lane="2"] .runner-choice { animation-delay: -.8s; }
-    .runner-track.is-sprint .runner-choice { animation-duration: .48s; transform: perspective(700px) rotateX(0) scale(1.08) translateY(-14px); }
-    .runner-choice:hover:not(:disabled),.runner-choice:focus-visible { transform: perspective(700px) rotateX(0) scale(1.08) translateY(-12px); border-color: var(--lime); box-shadow: 0 8px 0 #7f9b4f,0 29px 38px rgba(4,18,16,.42); outline: 3px solid rgba(212,241,116,.55); }
-    .runner-choice:disabled { cursor: default; }
-    .runner-choice[aria-pressed="true"] { border-color: var(--lime); background: #f3f8de; }
-    .runner-lane.is-correct .runner-choice { border-color: #b8e665; background: #f1f9d9; }
-    .runner-lane.is-wrong .runner-choice { border-color: #eea38c; border-top-color: #eea38c; background: #fff0e9; }
-    .runner-character { position: absolute; z-index: 5; bottom: 5px; left: var(--runner-position); display: grid; width: 92px; height: 126px; place-items: end center; transform: translateX(-50%); transition: left .46s cubic-bezier(.2,.8,.2,1),transform .2s cubic-bezier(.2,.8,.2,1); filter: drop-shadow(0 12px 9px rgba(2,17,14,.45)); pointer-events: none; }
-    .runner-character.is-jumping { transform: translateX(-50%) translateY(-78px) scale(1.08); }
-    .runner-mascot-art { width: 100%; height: 100%; overflow: visible; animation: foxi-run .48s ease-in-out infinite alternate; transform-origin: 50% 100%; }
-    .runner-mascot-tail { transform-origin: 30% 80%; animation: tail-wag .65s ease-in-out infinite alternate; }
-    .runner-mascot-tag { position: absolute; top: 2px; left: 50%; padding: 3px 7px; border: 1px solid rgba(255,255,255,.68); border-radius: 99px; background: #d4f174; color: #183c33; font-size: 8px; font-weight: 950; letter-spacing: .06em; box-shadow: 0 3px 8px rgba(0,0,0,.2); transform: translateX(-50%); }
-    .runner-track.is-slow .runner-road-grid::before { animation-duration: 7s; }
-    .runner-track.is-sprint .runner-road-grid::before { animation-duration: .38s; }
-    @keyframes runner-grid-flow { to { background-position: 0 84px,0 0; } }
-    @keyframes runner-hazard-approach { 0% { opacity: 0; transform: translate(-50%,0) scale(.24) rotateX(20deg); } 14% { opacity: 1; } 100% { opacity: 1; transform: translate(-50%,195px) scale(1.42) rotateX(0); } }
-    @keyframes runner-hit { 25% { transform: translateX(-7px); } 50% { transform: translateX(7px); } 75% { transform: translateX(-4px); } }
-    @keyframes gate-float { 50% { translate: 0 -8px; } }
-    @keyframes foxi-run { to { transform: translateY(-4px) rotate(-2deg); } }
-    @keyframes tail-wag { to { transform: rotate(9deg); } }
-    .runner-feedback { min-height: 47px; display: flex; align-items: center; gap: 9px; padding: 10px 20px; border-top: 1px solid #e7e9e1; color: #66736b; background: #fbfbf7; font-size: 10px; line-height: 1.55; }
-    .runner-feedback b { color: #6c60a1; font-size: 13px; }
-    .runner-feedback.is-good { color: #466b35; background: #f3f8e8; }
-    .runner-feedback.is-bad { color: #9a553e; background: #fff2ec; }
-    .runner-controls { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 13px 19px 16px; }
-    .runner-key-hint { flex: 1; margin: 0; color: #858c82; font-size: 8px; line-height: 1.5; }
-    .runner-action-buttons { display: flex; align-items: center; gap: 5px; }
-    .runner-action-button { min-width: 36px; height: 35px; padding: 0 9px; border: 1px solid #dce2d7; border-radius: 10px; background: #f7f9f3; color: #385345; font-size: 14px; font-weight: 900; cursor: pointer; }
-    .runner-action-button[data-runner-action="select"] { padding: 0 12px; background: #edf4dd; font-size: 9px; }
-    .runner-action-button:disabled { opacity: .42; cursor: default; }
-    .runner-button { flex: none; min-height: 41px; padding: 0 17px; border: 0; border-radius: 99px; background: var(--forest); color: white; font-size: 10px; font-weight: 850; cursor: pointer; transition: transform .16s, background .16s; }
-    .runner-button:hover { transform: translateY(-2px); background: var(--forest-2); }
-    .runner-button[hidden] { display: none; }
-    .runner-note { margin: 10px 2px 0; color: #716f83; font-size: 8px; line-height: 1.6; }
-    html.runner-lock,body.runner-lock { overflow: hidden; overscroll-behavior: none; }
-    .runner-shell:fullscreen,.runner-shell.is-fullscreen { position: fixed; z-index: 1000; inset: 0; display: grid; width: 100vw; height: 100vh; height: 100dvh; max-height: 100dvh; grid-template-rows: auto auto minmax(0,1fr) auto auto; overflow: hidden; border: 0; border-radius: 0; background: var(--white); }
-    .runner-shell:fullscreen .runner-track,.runner-shell.is-fullscreen .runner-track { min-height: 0; height: 100%; }
-    .runner-shell:fullscreen .runner-choice,.runner-shell.is-fullscreen .runner-choice { width: min(91%,300px); min-height: 92px; font-size: clamp(16px,2.5vw,23px); }
-    .runner-shell:fullscreen .runner-character,.runner-shell.is-fullscreen .runner-character { bottom: 12px; width: 112px; height: 154px; }
-    .runner-shell:fullscreen .runner-track.is-slow .runner-hazard,.runner-shell.is-fullscreen .runner-track.is-slow .runner-hazard { animation-duration: 6.4s; }
-    .runner-shell:fullscreen .runner-controls,.runner-shell.is-fullscreen .runner-controls { min-height: 65px; }
-    .runner-shell:fullscreen .runner-feedback,.runner-shell.is-fullscreen .runner-feedback { min-height: 50px; }
-    @media(max-height:600px) {
-      .runner-shell:fullscreen .runner-head,.runner-shell.is-fullscreen .runner-head { padding: 8px 14px; }
-      .runner-shell:fullscreen .runner-brand strong,.runner-shell.is-fullscreen .runner-brand strong { font-size: 17px; }
-      .runner-shell:fullscreen .runner-question,.runner-shell.is-fullscreen .runner-question { padding: 7px 14px; }
-      .runner-shell:fullscreen .runner-sentence,.runner-shell.is-fullscreen .runner-sentence { font-size: clamp(19px,4vw,26px); }
-      .runner-shell:fullscreen .runner-hint,.runner-shell.is-fullscreen .runner-hint,.runner-shell:fullscreen .runner-translation,.runner-shell.is-fullscreen .runner-translation { font-size: 8px; }
-      .runner-shell:fullscreen .runner-feedback,.runner-shell.is-fullscreen .runner-feedback { min-height: 34px; padding: 5px 12px; }
-      .runner-shell:fullscreen .runner-controls,.runner-shell.is-fullscreen .runner-controls { min-height: 46px; padding: 5px 12px; }
-      .runner-shell:fullscreen .runner-action-button,.runner-shell.is-fullscreen .runner-action-button { height: 31px; }
-    }
-    @media(prefers-reduced-motion:reduce) { .runner-road-grid::before,.runner-choice,.runner-mascot-art,.runner-mascot-tail { animation:none!important } .runner-character,.runner-choice { transition:none!important } }
+    .foxi-game-wrap { overflow: hidden; border: 1px solid #d6d1e8; border-radius: 22px; background: #172b2c; box-shadow: 0 24px 65px rgba(43,38,76,.09); }
+    .foxi-game-frame { display: block; width: 100%; height: 680px; border: 0; background: #172b2c; }
+    .runner-note { margin: 10px 2px 0; color: #716f83; font-size: 9px; line-height: 1.6; }
+    @media(max-width:650px) { .foxi-game-frame { height: 700px; } }
     .tutor-section { background: #e9e5fa; }
     .tutor-shell { overflow: hidden; border: 1px solid #d6d1e8; border-radius: 20px; background: var(--white); box-shadow: 0 24px 65px rgba(43,38,76,.08); }
     .tutor-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 21px; background: var(--forest); color: white; }
@@ -317,13 +225,9 @@
     html[data-theme="dark"] .loop-item { border-color:#354139; background:#26312b; }
     html[data-theme="dark"] .loop-item small,html[data-theme="dark"] .loop-note { color:#aab6ad; }
     html[data-theme="dark"] .hero-foot { border-color:#354139; }
+    html[data-theme="dark"] .foxi-game-wrap { border-color:#39463e; }
     html[data-theme="dark"] .runner-section,html[data-theme="dark"] .tutor-section,html[data-theme="dark"] .frame-section,html[data-theme="dark"] .adults-section { background:#1a2320; }
-    html[data-theme="dark"] .runner-shell,html[data-theme="dark"] .tutor-shell,html[data-theme="dark"] .compare-card,html[data-theme="dark"] .word-card { border-color:#39463e; background:var(--white); }
-    html[data-theme="dark"] .runner-question,html[data-theme="dark"] .runner-feedback,html[data-theme="dark"] .runner-controls { border-color:#354139; background:#202a25; }
-    html[data-theme="dark"] .runner-sentence,html[data-theme="dark"] .runner-hint,html[data-theme="dark"] .runner-translation,html[data-theme="dark"] .runner-key-hint { color:#d6dfd8; }
-    html[data-theme="dark"] .runner-feedback { color:#c1ccc4; }
-    html[data-theme="dark"] .runner-action-button { border-color:#46534a; background:#29352e; color:#e3ebdf; }
-    html[data-theme="dark"] .runner-action-button[data-runner-action="select"] { background:#34452e; }
+    html[data-theme="dark"] .tutor-shell,html[data-theme="dark"] .compare-card,html[data-theme="dark"] .word-card { border-color:#39463e; background:var(--white); }
     html[data-theme="dark"] .compare-card header,html[data-theme="dark"] .compare-cell + .compare-cell,html[data-theme="dark"] .ask-row { border-color:#354139; }
     html[data-theme="dark"] .compare-card header h3,html[data-theme="dark"] .lens-card h3,html[data-theme="dark"] .adult-benefit h3 { color:#eef2ed; }
     html[data-theme="dark"] .compare-cell p,html[data-theme="dark"] .ask-row p,html[data-theme="dark"] .lens-card p,html[data-theme="dark"] .adult-benefit p,html[data-theme="dark"] .section-intro { color:#b2bdb5; }
@@ -360,7 +264,7 @@
     html[data-text-size="large"] .nav-links { font-size:13px; }
     html[data-text-size="large"] .word-meaning { font-size:16px; }
     html[data-text-size="large"] .compare-cell p,html[data-text-size="large"] .ask-row p,html[data-text-size="large"] .adult-note,html[data-text-size="large"] .word-example { font-size:12px; }
-    html[data-text-size="large"] .runner-round,html[data-text-size="large"] .runner-hint,html[data-text-size="large"] .runner-translation,html[data-text-size="large"] .runner-feedback,html[data-text-size="large"] .runner-key-hint,html[data-text-size="large"] .runner-note,html[data-text-size="large"] .tutor-status,html[data-text-size="large"] .clear-chat,html[data-text-size="large"] .mode-tab,html[data-text-size="large"] .message .bubble,html[data-text-size="large"] .sidebar-label,html[data-text-size="large"] .quick-prompt,html[data-text-size="large"] .tutor-tip,html[data-text-size="large"] .chat-input,html[data-text-size="large"] .chat-options,html[data-text-size="large"] .builder-field select,html[data-text-size="large"] .builder-field label,html[data-text-size="large"] .builder-heading small,html[data-text-size="large"] .tag,html[data-text-size="large"] footer { font-size:12px; }
+    html[data-text-size="large"] .tutor-status,html[data-text-size="large"] .clear-chat,html[data-text-size="large"] .mode-tab,html[data-text-size="large"] .message .bubble,html[data-text-size="large"] .sidebar-label,html[data-text-size="large"] .quick-prompt,html[data-text-size="large"] .tutor-tip,html[data-text-size="large"] .chat-input,html[data-text-size="large"] .chat-options,html[data-text-size="large"] .builder-field select,html[data-text-size="large"] .builder-field label,html[data-text-size="large"] .builder-heading small,html[data-text-size="large"] .tag,html[data-text-size="large"] footer { font-size:12px; }
     @media(max-width:850px) { .adult-layout { grid-template-columns:1fr; } }
     [data-i18n] { transition: opacity .12s ease; }
     @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{transition:none!important;animation:none!important} }
@@ -418,28 +322,7 @@
       .tags { justify-content: flex-start; }
       .footer-inner { flex-direction: column; }
     }
-    @media(max-width:650px) {
-      .runner-head { align-items: flex-start; flex-direction: column; padding: 15px; }
-      .runner-stats { justify-content: flex-start; }
-      .runner-fullscreen { margin-left: auto; }
-      .runner-question { grid-template-columns: 1fr; gap: 7px; padding: 16px; }
-      .runner-sentence,.runner-hint,.runner-translation { grid-column: 1; grid-row: auto; }
-      .runner-translation { max-width: none; text-align: left; }
-      .runner-track { min-height: 320px; padding: 0; }
-      .runner-road-grid { top: 30%; }
-      .runner-choice { min-height: 64px; padding: 8px 4px; font-size: 10px; }
-      .runner-character { bottom: 3px; width: 72px; height: 100px; }
-      .runner-mascot-tag { top: 0; font-size: 7px; }
-      .runner-feedback { padding: 10px 13px; }
-      .runner-controls { align-items: stretch; flex-direction: column; padding: 12px 13px; }
-      .runner-action-buttons { justify-content: center; }
-      .runner-action-button { min-width: 43px; height: 39px; }
-      .runner-shell:fullscreen .runner-track,.runner-shell.is-fullscreen .runner-track { min-height: 0; }
-      .runner-shell:fullscreen .runner-question,.runner-shell.is-fullscreen .runner-question { padding: 10px 14px; }
-      .runner-shell:fullscreen .runner-sentence,.runner-shell.is-fullscreen .runner-sentence { font-size: clamp(20px,5vw,29px); }
-      .runner-shell:fullscreen .runner-character,.runner-shell.is-fullscreen .runner-character { bottom: 4px; width: 82px; height: 116px; }
-      .runner-shell:fullscreen .runner-choice,.runner-shell.is-fullscreen .runner-choice { min-height: 60px; font-size: clamp(12px,3vw,16px); }
-    }
+
   </style>
 </head>
 <body>
@@ -488,80 +371,9 @@
 
     <section class="section runner-section" id="game">
       <div class="wrap">
-        <div class="section-head"><div><div class="section-kicker" data-i18n="gameKicker">3D-забег / Помоги Фокси</div><h2 class="section-title" data-i18n="gameTitle">Помоги Фокси собрать фразу.</h2></div><p class="section-intro" data-i18n="gameIntro">Выбирай окончание слова на трёх дорожках. Фокси мчится по объёмному городу, а на каждом задании игра замедляется, чтобы можно было всё спокойно прочитать.</p></div>
-        <div class="runner-shell" id="runnerShell">
-          <div class="runner-head">
-            <div class="runner-brand"><span class="runner-logo">FX</span><span><strong data-i18n="gameName">Забег Фокси</strong><small data-i18n="gameSubtitle">Собирай слова · строй предложения</small></span></div>
-            <div class="runner-stats" aria-live="polite"><span class="runner-stat" id="runnerScore">✦ 0</span><span class="runner-stat" id="runnerLives">♥ ♥ ♥</span><span class="runner-stat slow" data-i18n="slowMode">⌛ Медленный режим · 0,35×</span><button class="runner-fullscreen" id="runnerFullscreen" type="button" aria-pressed="false" aria-label="На весь экран"><span aria-hidden="true">⛶</span><span id="runnerFullscreenLabel" data-i18n="fullscreenButton">На весь экран</span></button></div>
-          </div>
-          <div class="runner-question" aria-live="polite">
-            <span class="runner-round" id="runnerRound">Задание 1 / 10</span>
-            <p class="runner-translation" id="runnerTranslation"></p>
-            <p class="runner-sentence" id="runnerSentence"></p>
-            <p class="runner-hint" id="runnerHint"></p>
-          </div>
-          <div class="runner-track is-slow" id="runnerTrack" aria-label="Три дорожки с вариантами слова">
-            <svg class="runner-scene" viewBox="0 0 1200 500" preserveAspectRatio="none" aria-hidden="true">
-              <defs>
-                <linearGradient id="runnerSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#263d5b"/><stop offset=".56" stop-color="#5a6971"/><stop offset="1" stop-color="#e79562"/></linearGradient>
-                <linearGradient id="runnerRoad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#47534a"/><stop offset="1" stop-color="#192d2b"/></linearGradient>
-                <radialGradient id="runnerSun"><stop stop-color="#fff2b5"/><stop offset="1" stop-color="#ffb45e" stop-opacity=".12"/></radialGradient>
-              </defs>
-              <rect width="1200" height="500" fill="url(#runnerSky)"/>
-              <circle cx="600" cy="143" r="112" fill="url(#runnerSun)"/>
-              <path d="M0 255 80 210 145 246 224 185 294 248 370 205 438 249 503 218 552 255 0 315Z" fill="#35485a" opacity=".72"/>
-              <path d="M1200 244 1135 206 1070 251 1002 190 930 246 858 211 790 252 730 222 650 260 1200 321Z" fill="#324456" opacity=".78"/>
-              <path d="M0 310 52 270 52 223 90 223 90 282 139 251 139 204 175 204 175 273 235 244 235 194 271 194 271 284 330 250 330 218 365 218 365 291 430 263 430 224 472 224 472 303 0 352Z" fill="#223a3f"/>
-              <path d="M1200 310 1153 275 1153 213 1114 213 1114 285 1064 250 1064 198 1026 198 1026 278 966 244 966 184 927 184 927 285 870 251 870 220 831 220 831 294 773 266 773 221 730 221 730 309Z" fill="#20383e"/>
-              <path d="M531 164 669 164 1200 500 0 500Z" fill="url(#runnerRoad)"/>
-              <path d="M531 164 0 500M669 164 1200 500" stroke="#c8ea9a" stroke-opacity=".7" stroke-width="4"/>
-              <path d="M600 164 600 500M552 164 300 500M648 164 900 500" stroke="#d4f174" stroke-opacity=".55" stroke-width="3" stroke-dasharray="16 22"/>
-              <path d="M552 219 648 219M507 280 693 280M450 352 750 352" stroke="#d7edb4" stroke-opacity=".22" stroke-width="2"/>
-              <path d="M78 300 0 356M1122 300 1200 356" stroke="#e1f1b4" stroke-opacity=".36" stroke-width="4"/>
-            </svg>
-            <div class="runner-road-grid" aria-hidden="true"></div>
-            <div class="runner-lane" data-runner-lane="0"><span class="runner-lane-label">01</span><button class="runner-choice" type="button" data-runner-choice="0" aria-pressed="false"></button></div>
-            <div class="runner-lane" data-runner-lane="1"><span class="runner-lane-label">02</span><button class="runner-choice" type="button" data-runner-choice="1" aria-pressed="false"></button></div>
-            <div class="runner-lane" data-runner-lane="2"><span class="runner-lane-label">03</span><button class="runner-choice" type="button" data-runner-choice="2" aria-pressed="false"></button></div>
-            <div class="runner-character" id="runnerCharacter" role="img" aria-label="Фокси, маскот игры">
-              <span class="runner-mascot-tag" data-i18n="mascotTag">ФОКСИ</span>
-              <svg class="runner-mascot-art" viewBox="0 0 120 155" aria-hidden="true">
-                <g class="runner-mascot-tail">
-                  <path d="M83 94c24-24 38-9 28 14-7 16-24 24-40 14l-9-15Z" fill="#ec8746"/>
-                  <path d="M102 105c10-9 16-1 10 8-4 7-10 10-17 8 5-4 7-9 7-16Z" fill="#fff2d9"/>
-                </g>
-                <path d="m38 33-5-26c-1-6 5-8 9-3l16 19ZM78 27 91 6c4-6 10-3 9 3l-4 31Z" fill="#e8783b" stroke="#bd562e" stroke-width="2"/>
-                <path d="m40 27-1-13 12 15ZM82 28 91 14l-2 20Z" fill="#f6b0a0"/>
-                <path d="M36 83c-8 4-12 17-10 29l-9 12c-3 4 1 8 5 5l19-13 4-26ZM83 82c8 2 14 14 15 26l11 10c4 3 1 8-4 6l-21-9-9-24Z" fill="#e8783b"/>
-                <path d="M39 82c7-8 35-10 44 0l9 39-13 15H39l-13-15Z" fill="#245342" stroke="#193e35" stroke-width="3"/>
-                <path d="m59 91 3 42M47 101l9 3M75 101l-9 3" stroke="#d4f174" stroke-width="3" stroke-linecap="round"/>
-                <path d="M44 132h17l-1 11H42c-8 0-11-7-5-10ZM64 132h16l9 10c4 5 0 9-5 7l-21-4Z" fill="#e8783b" stroke="#bd562e" stroke-width="2"/>
-                <path d="M38 145h18c5 0 8 3 7 7H36c-6 0-7-5-2-7ZM75 143l12 2c5 1 8 4 6 8L72 151c-5-1-6-6-2-8Z" fill="#f4f0dc"/>
-                <path d="m44 103 12 5-7 8-11-6ZM76 103l-12 5 7 8 11-6Z" fill="#245342" stroke="#193e35" stroke-width="2"/>
-                <ellipse cx="60" cy="53" rx="34" ry="31" fill="#ed8747" stroke="#bd562e" stroke-width="2"/>
-                <path d="M31 49c-2-18 10-31 29-31s31 13 29 31l-3 17-12 11H46L34 66Z" fill="#f08d4d"/>
-                <path d="M34 56c8-2 16 2 19 12 2 7-4 13-12 10-7-3-11-11-7-22ZM86 56c-8-2-16 2-19 12-2 7 4 13 12 10 7-3 11-11 7-22Z" fill="#fff0d6"/>
-                <ellipse cx="48" cy="53" rx="3" ry="4" fill="#24362e"/><ellipse cx="72" cy="53" rx="3" ry="4" fill="#24362e"/>
-                <path d="M55 64q5-5 10 0-1 6-5 6t-5-6Z" fill="#513b38"/>
-                <path d="M60 70q-4 7-9 2M60 70q4 7 9 2" fill="none" stroke="#513b38" stroke-width="2" stroke-linecap="round"/>
-                <path d="M51 82h18l-3 13h-12Z" fill="#d4f174" stroke="#fff" stroke-width="2"/>
-                <text x="60" y="92" fill="#193e35" font-family="system-ui,sans-serif" font-size="9" font-weight="900" text-anchor="middle">-s</text>
-              </svg>
-            </div>
-          </div>
-          <div class="runner-feedback" id="runnerFeedback" aria-live="polite"><b>✦</b><span></span></div>
-          <div class="runner-controls">
-            <p class="runner-key-hint" data-i18n="gameControls">← → — бежать между дорожками · ↑ или пробел — прыгать · Enter — выбрать слово.</p>
-            <div class="runner-action-buttons" role="group" aria-label="Управление Фокси">
-              <button class="runner-action-button" type="button" data-runner-action="left" aria-label="Бежать влево">←</button>
-              <button class="runner-action-button" type="button" data-runner-action="jump" aria-label="Прыгнуть">↑</button>
-              <button class="runner-action-button" type="button" data-runner-action="right" aria-label="Бежать вправо">→</button>
-              <button class="runner-action-button" type="button" data-runner-action="select" data-i18n="gameCollect" aria-label="Выбрать слово">Взять слово</button>
-            </div>
-            <button class="runner-button" id="runnerStart" type="button" data-i18n="gameStart">Начать забег</button>
-          </div>
-        </div>
-        <p class="runner-note" data-i18n="gameNote">Собирай правильные формы слов, уворачивайся от светящихся преград и прыгай. На каждом задании скорость снижается, пока ты читаешь.</p>
+        <div class="section-head"><div><div class="section-kicker" data-i18n="gameKicker">Новая аркада / Слово за словом</div><h2 class="section-title" data-i18n="gameTitle">Собери фразу и выведи Фокси на финиш!</h2></div><p class="section-intro" data-i18n="gameIntro">Собирай слова по порядку, уворачивайся от ловушек и лови светящиеся звёзды. Чем длиннее серия, тем круче комбо.</p></div>
+        <div class="foxi-game-wrap"><iframe class="foxi-game-frame" src="foxi-game.html" title="Игра «Забег Фокси»" allow="fullscreen" allowfullscreen loading="lazy"></iframe></div>
+        <p class="runner-note" data-i18n="gameNote">← → меняют дорожки, ↑ или пробел — прыжок, Enter — выбрать слово. На телефоне нажимай на карточку. Включи полный экран, чтобы играть без прокрутки.</p>
       </div>
     </section>
 
@@ -643,7 +455,7 @@
         <div class="section-head"><div><div class="section-kicker" data-i18n="adultsKicker">Для взрослых</div><h2 class="section-title" data-i18n="adultsTitle">Английский, который<br>вписывается в жизнь.</h2></div><p class="section-intro" data-i18n="adultsIntro">Работа, семья и дела уже занимают время. Здесь можно учиться маленькими шагами, выбирать удобный темп и сразу брать слова для настоящих разговоров.</p></div>
         <div class="adult-layout">
           <div class="adult-benefits">
-            <article class="adult-benefit"><span class="adult-benefit-icon" aria-hidden="true">◷</span><div><h3 data-i18n="adultBenefit1Title">Короткая практика без спешки</h3><p data-i18n="adultBenefit1Text">Займись на 10–15 минут, когда удобно. В игре Фокси замедляется на задании, чтобы успеть прочитать фразу и выбрать окончание.</p></div></article>
+            <article class="adult-benefit"><span class="adult-benefit-icon" aria-hidden="true">◷</span><div><h3 data-i18n="adultBenefit1Title">Короткая практика без спешки</h3><p data-i18n="adultBenefit1Text">Займись на 10–15 минут, когда удобно. Собирай английские фразы по словам: Фокси бежит медленно, чтобы всё можно было спокойно прочитать.</p></div></article>
             <article class="adult-benefit"><span class="adult-benefit-icon" aria-hidden="true">▤</span><div><h3 data-i18n="adultBenefit2Title">Слова для работы и повседневной жизни</h3><p data-i18n="adultBenefit2Text">Повторяй полезные выражения, строй из них фразы и сохраняй нужное в личный словарь на этом устройстве.</p></div></article>
             <article class="adult-benefit"><span class="adult-benefit-icon" aria-hidden="true">☕</span><div><h3 data-i18n="adultBenefit3Title">Спокойно и в своём темпе</h3><p data-i18n="adultBenefit3Text">Переключай светлую и тёмную тему, увеличивай текст, выбирай AI-тьютора или мини-игру. Здесь нет дедлайнов и обязательной гонки за баллами.</p></div></article>
           </div>
@@ -682,7 +494,7 @@
         audiencePill: 'For work and everyday situations', surveyPill: '10–15 minutes · at your pace', heroButton1: 'Why it suits adults', heroButton2: 'Try the AI tutor',
         stampOne: 'Words for work and life', stampTwo: 'A few small steps each day', loopEyebrow: 'Your rhythm', loopTitle: 'A little practice<br>every day', loop1Title: 'Build sentences', loop1Sub: 'A run with Foxi', loop2Title: 'Remember words', loop2Sub: 'Your mini dictionary', loop3Title: 'Practise a dialogue', loop3Sub: 'The AI tutor can help', loopNote: 'Start with a few minutes and come back whenever it suits you. There is no need to rush.',
         heroFoot1: 'For', heroFoot2: 'adults with a busy schedule', heroFoot3: 'Inside', heroFoot4: 'game · tutor · mini dictionary',
-        gameKicker: '3D run / Help Foxi', gameTitle: 'Help Foxi build a sentence.', gameIntro: 'Choose the right word ending on one of three lanes. Dodge the road hazards, jump, and help Foxi collect the right words.', gameName: 'Foxi Word Dash', gameSubtitle: 'Run · dodge · build sentences', mascotTag: 'FOXI', slowMode: '⌛ Slow mode · 0.35×', gameControls: '← → run between lanes · ↑ or Space jump · Enter collect a word.', gameCollect: 'Collect', fullscreenButton: 'Full screen', fullscreenExit: 'Exit full screen', gameStart: 'Start the run', gameAgain: 'Run again', gameReady: 'Choose the correct word form to collect it. Foxi slows down while you read; there is no timer.', gameCorrect: 'Great choice!', gameWrong: 'Not quite. The correct form is', gameHit: 'Ouch! Foxi hit a barrier. Move or jump to dodge the next one.', gameDodge: 'Nice dodge! +25 points', gameComplete: 'Run complete!', gameOver: 'Out of lives.', gamePoints: 'points', gameRound: 'Round', gameNote: 'Collect the right word, dodge the glowing barriers, and jump over danger. The game slows down for each question.',
+        gameKicker: 'New arcade / Foxi Word Dash', gameTitle: 'Build the phrase. Beat the road!', gameIntro: 'Pick up the words in order, weave around road traps, and catch glowing stars. Keep your streak going to build a bigger combo.', gameName: 'Foxi Word Dash', gameSubtitle: 'Collect words · dodge · combo', mascotTag: 'FOXI', slowMode: '⌛ Slow reading mode · 0.35×', gamePrompt: 'Build the English phrase by collecting each word in order:', gameControls: '← → or A/D change lanes · ↑ or Space jump · Enter collect. Words stay until you choose; keep an eye on the road.', gameCollect: 'Collect', fullscreenButton: 'Full screen', fullscreenExit: 'Exit full screen', gameStart: 'Play', gameAgain: 'Run again', gameReady: 'Help Foxi build the sentence one word at a time. The word choices stay until you pick one; keep an eye on the road.', gameCorrect: 'Nice!', gameWrong: 'Not quite. Try again.', gameHit: 'Foxi hit a barrier! Change lanes or jump to avoid the next one.', gameDodge: 'Great dodge! +25 points', gameBonus: 'Star collected! +50 points ✨', gameComplete: 'Run complete!', gameOver: 'Run over.', gamePoints: 'points', gameRound: 'Phrase', gameStep: 'Word', gameFinish: 'Finish!', gameCombo: 'Combo', gameClue: 'Russian clue:', gamePhraseBonus: 'Phrase complete! +100 bonus points ✨', gameHeart: 'Two phrases done — bonus heart! ♥', gameAnswer: 'The right word is', gameCompleteScore: 'You built every phrase! Final score:', gameOverScore: 'Run over. Final score:', gameNote: '← → change lanes, Space jump, Enter collect. On a phone, tap a word card or the controls below. Use full screen and take your time.',
         tutorKicker: 'AI tutor / English practice', tutorTitle: 'Practise. Ask. Improve.', tutorIntro: 'Talk through voice or text, work on grammar, and improve your writing with an AI tutor.', tutorName: 'English practice coach', tutorChecking: 'Checking connection…', clearChat: 'New chat', modeConversation: 'Conversation', modeGrammar: 'Grammar', modeWriting: 'Writing', modePlan: 'My plan', builderTitle: 'A plan that fits your life', builderHint: 'Choose a goal and your available time. The tutor will build a schedule.', goalLabel: 'Main goal', goalSpeaking: 'Confident speaking', goalGrammar: 'Grammar', goalWriting: 'Writing', goalVocabulary: 'Vocabulary', goalBalanced: 'A bit of everything', levelLabel: 'My level', daysLabel: 'Days per week', weeksLabel: 'Plan length', weeks2: '2 weeks', weeks4: '4 weeks', weeks6: '6 weeks', weeks8: '8 weeks', minutesLabel: 'Time per session', generatePlan: '✦ Build my plan',
         chatPlaceholder: 'Write a message or ask for a grammar explanation…', speakReplies: 'Read AI replies aloud', voiceNote: 'Your browser transcribes voice; processing depends on the browser.', quickTitle: 'Try a starter prompt', quickConversation: 'Let’s talk about work and everyday life.', quickGrammar: 'Explain the Present Perfect simply and give me an exercise.', quickWriting: 'Help me correct my text and explain the main mistakes.', tutorTipLabel: 'How the tutor helps', tutorTipText: 'It gently corrects errors, explains the rule, and asks a follow-up question for practice.', privacyLabel: 'Your data:', privacyText: 'On this GitHub Pages version the AI tutor is not connected yet. When enabled, typed messages and recognised speech transcripts will be sent to the OpenAI API. The API key must stay on a server; chat history is not saved by this site.',
         micStart: 'Start voice input', sendMessage: 'Send message', chooseTutorMode: 'Choose tutor mode', checkingServer: 'Checking local tutor…', keyMissing: 'Add an API key to the local server to enable AI.', serverOffline: 'Start the local app server to use the tutor.', staticOnly: 'Website is online; AI tutor needs a server connection.', tutorReady: 'AI tutor is ready', tutorThinking: 'AI tutor is replying…', tutorError: 'Could not get a reply. Check the server and API key, then try again.', hostedTutorUnavailable: 'The AI tutor needs a secure server and is not enabled on this static website yet.', micUnsupported: 'Voice input is not supported here. You can type instead.', micDenied: 'Microphone could not start. Allow microphone access or type instead.', listening: 'Listening… speak in English',
@@ -699,36 +511,12 @@
         comp3Ai: 'Quick responses and hints, with quality depending on the tool.', comp3Teacher: 'A discussion of errors, with a chance to ask follow-up questions.', comp3Ask: 'How should feedback accuracy, clarity, and timing be assessed?',
         comp4Ai: 'On-demand practice, flexible pacing, and study outside class.', comp4Teacher: 'A learning routine, shared goals, and support for steady progress.', comp4Ask: 'For which learners and under what conditions does each format work well?',
         adultsKicker: 'A calmer way to learn', adultsTitle: 'English that fits<br>into real life.', adultsIntro: 'Work, family, and daily plans already take time. Learn in small steps, choose a comfortable pace, and practise words you can use in real conversations.',
-        adultBenefit1Title: 'Short practice, no rush', adultBenefit1Text: 'Study for 10–15 minutes when it suits you. Foxi slows down at each question so there is time to read the sentence and choose the right ending.', adultBenefit2Title: 'Words for work and everyday life', adultBenefit2Text: 'Practise useful expressions, build them into sentences, and save words in a personal list on this device.', adultBenefit3Title: 'Comfortable and self-paced', adultBenefit3Text: 'Switch between light and dark themes, enlarge the text, and choose the AI tutor or a mini-game. No deadlines or pressure to keep a score.', adultNote: 'Your theme, text size, and saved words stay in this browser on this device.',
+        adultBenefit1Title: 'Short practice, no rush', adultBenefit1Text: 'Study for 10–15 minutes when it suits you. Build a sentence one word at a time; Foxi keeps the pace calm so there is time to read.', adultBenefit2Title: 'Words for work and everyday life', adultBenefit2Text: 'Practise useful expressions, build them into sentences, and save words in a personal list on this device.', adultBenefit3Title: 'Comfortable and self-paced', adultBenefit3Text: 'Switch between light and dark themes, enlarge the text, and choose the AI tutor or a mini-game. No deadlines or pressure to keep a score.', adultNote: 'Your theme, text size, and saved words stay in this browser on this device.',
         wordKicker: 'Useful word · mini dictionary', wordSpeak: '🔊 Listen', wordSave: '＋ Save word', wordSaved: '✓ Saved', wordNext: 'Next word →', readerLabel: 'Text size', readerSmaller: 'Use regular text size', readerLarger: 'Enlarge text', savedWordsLabel: 'My words', savedWordCount: 'Saved words: {count}', wordSavedNotice: 'Added to your word list.', wordRemovedNotice: 'Removed from your word list.', wordSpeechUnavailable: 'Speech playback is not available in this browser.',
         keywordsTitle: 'Key concepts', tag2: 'traditional learning', tag3: 'adult learners', tag4: 'feedback', tag5: 'personalisation', tag6: 'independent learning', footerBrand: 'English & AI', footerType: 'Adult English practice', footerLine: 'No rush · your own pace · words for real life',
         menuOpen: 'Open menu', menuClose: 'Close menu'
       }
     };
-    const runnerQuestions = [
-      { sentence: 'She ___ English after work.', meaning: 'Она занимается английским после работы.', hint: { ru: 'She / he / it в Present Simple: согласная + y меняется на -ies.', en: 'With she / he / it in the present simple, a consonant + y changes to -ies.' }, explanation: { ru: 'Для she к study добавляем окончание -ies: studies.', en: 'For she, add -ies to study: studies.' }, options: [{text:'study'}, {text:'studies',correct:true}, {text:'studying'}] },
-      { sentence: 'They are ___ dinner now.', meaning: 'Они сейчас готовят ужин.', hint: { ru: 'После are для действия прямо сейчас добавь -ing.', en: 'For an action happening now, use -ing after are.' }, explanation: { ru: 'После are нужен глагол с -ing: cooking.', en: 'After are, use the -ing form: cooking.' }, options: [{text:'cook'}, {text:'cooking',correct:true}, {text:'cooks'}] },
-      { sentence: 'We ___ the museum last weekend.', meaning: 'Мы посетили музей в прошлые выходные.', hint: { ru: 'Last weekend показывает прошедшее время. У правильного глагола visit добавь -ed.', en: 'Last weekend signals the past. Add -ed to the regular verb visit.' }, explanation: { ru: 'У правильного глагола visit в прошедшем времени появляется -ed: visited.', en: 'The regular verb visit takes -ed in the past: visited.' }, options: [{text:'visit'}, {text:'visited',correct:true}, {text:'visiting'}] },
-      { sentence: 'The dog ___ loudly at night.', meaning: 'Собака громко лает по ночам.', hint: { ru: 'The dog — это it. В Present Simple к глаголу добавляется -s.', en: 'The dog is it. Add -s to the verb in the present simple.' }, explanation: { ru: 'С подлежащим it к bark добавляем -s: barks.', en: 'With it as the subject, add -s to bark: barks.' }, options: [{text:'bark'}, {text:'barks',correct:true}, {text:'barking'}] },
-      { sentence: 'I ___ my homework before dinner yesterday.', meaning: 'Вчера я закончил домашнее задание до ужина.', hint: { ru: 'Yesterday указывает на прошлое. У правильного глагола finish добавь -ed.', en: 'Yesterday points to the past. Add -ed to the regular verb finish.' }, explanation: { ru: 'В прошедшем времени finish превращается в finished.', en: 'The past form of finish is finished.' }, options: [{text:'finish'}, {text:'finished',correct:true}, {text:'finishing'}] },
-      { sentence: 'This road is ___ than the old one.', meaning: 'Эта дорога шире старой.', hint: { ru: 'Than сравнивает две вещи. Для wide нужна сравнительная форма.', en: 'Than compares two things. Use the comparative form of wide.' }, explanation: { ru: 'Для короткого прилагательного wide добавляем -r: wider.', en: 'Add -r to the short adjective wide: wider.' }, options: [{text:'wide'}, {text:'wider',correct:true}, {text:'widest'}] },
-      { sentence: 'My friends ___ in the park on Sundays.', meaning: 'Мои друзья играют в парке по воскресеньям.', hint: { ru: 'My friends — это they. В Present Simple глагол остаётся без -s.', en: 'My friends means they. Keep the base verb in the present simple.' }, explanation: { ru: 'С they используется начальная форма глагола: play.', en: 'With they, use the base form of the verb: play.' }, options: [{text:'plays'}, {text:'play',correct:true}, {text:'playing'}] },
-      { sentence: 'He ___ to work by bus every day.', meaning: 'Он каждый день ездит на работу на автобусе.', hint: { ru: 'He в Present Simple: к go добавляется -es.', en: 'With he in the present simple, add -es to go.' }, explanation: { ru: 'С he глагол go меняется на goes.', en: 'With he, go changes to goes.' }, options: [{text:'go'}, {text:'goes',correct:true}, {text:'going'}] },
-      { sentence: 'The baby is ___ right now.', meaning: 'Малыш сейчас спит.', hint: { ru: 'После is для действия прямо сейчас добавь -ing.', en: 'For an action happening now, add -ing after is.' }, explanation: { ru: 'После is нужна форма с -ing: sleeping.', en: 'After is, use the -ing form: sleeping.' }, options: [{text:'sleep'}, {text:'sleeping',correct:true}, {text:'slept'}] },
-      { sentence: 'She has ___ her homework already.', meaning: 'Она уже закончила домашнее задание.', hint: { ru: 'После has в Present Perfect поставь третью форму глагола.', en: 'In the present perfect, use the past participle after has.' }, explanation: { ru: 'Третья форма правильного глагола finish — finished.', en: 'The past participle of the regular verb finish is finished.' }, options: [{text:'finish'}, {text:'finished',correct:true}, {text:'finishing'}] }
-    ];
-    let runnerIndex = 0;
-    let runnerScore = 0;
-    let runnerLives = 3;
-    let runnerStreak = 0;
-    let runnerLane = 1;
-    let runnerState = 'ready';
-    let runnerLocked = false;
-    let runnerFeedback = null;
-    let runnerObstacleTimer = null;
-    let runnerJumpTimer = null;
-    let runnerFeedbackTimer = null;
-    let runnerJumping = false;
     const originalText = new Map([...document.querySelectorAll('[data-i18n]')].map(el => [el.dataset.i18n, el.innerHTML]));
     const originalPlaceholders = new Map([...document.querySelectorAll('[data-i18n-placeholder]')].map(el => [el.dataset.i18nPlaceholder, el.placeholder]));
     let language = 'ru';
@@ -1004,225 +792,6 @@
       const apiText = `Create a realistic ${weeks}-week English study plan for an adult learner aged 25–30. Self-estimated level: ${level}. Main goal: ${goal}. Study ${minutes} minutes per session, ${days} days each week. Respond in ${language === 'en' ? 'English' : 'Russian'}. Keep every session within ${minutes} minutes. Organize by week and study day, assign exact minutes to each activity, include spaced review, gradual progression, and a simple weekly progress check. Mix independent practice, useful AI exercises, and occasional real human speaking/writing practice when relevant. No paid-only resources. Keep the plan practical and concise. After the plan, invite the learner to report schedule changes so you can adapt it.`;
       sendTutorMessage({ displayText, apiText });
     }
-    function runnerText(key) {
-      const russian = {
-        ready: 'Фокси бежит вперёд. Уходи от преград и выбирай правильную форму слова.',
-        correct: 'Верно!', wrong: 'Почти. Правильная форма:', hit: 'Ой! Фокси задел преграду. Сдвинься или перепрыгни следующую.', dodge: 'Отличный манёвр! +25 очков', complete: 'Забег завершён!', over: 'Жизни закончились.',
-        round: 'Задание', finished: 'Финиш', score: 'очков', start: 'Начать забег', again: 'Ещё раз',
-        completeScore: 'Все предложения собраны! Итог:', overScore: 'Забег окончен. Итог:'
-      };
-      const english = {
-        ready: translations.en.gameReady, correct: translations.en.gameCorrect, wrong: translations.en.gameWrong,
-        hit: translations.en.gameHit, dodge: translations.en.gameDodge,
-        complete: translations.en.gameComplete, over: translations.en.gameOver, round: translations.en.gameRound,
-        finished: 'Finish', score: translations.en.gamePoints, start: translations.en.gameStart, again: translations.en.gameAgain,
-        completeScore: 'All sentences collected! Final score:', overScore: 'Run over. Final score:'
-      };
-      return (language === 'en' ? english : russian)[key];
-    }
-    function renderRunner() {
-      const question = runnerQuestions[Math.min(runnerIndex, runnerQuestions.length - 1)];
-      const track = document.getElementById('runnerTrack');
-      const feedback = document.getElementById('runnerFeedback');
-      document.getElementById('runnerScore').textContent = `✦ ${runnerScore} ${runnerText('score')}`;
-      const lives = document.getElementById('runnerLives');
-      lives.textContent = `${'♥ '.repeat(runnerLives)}${'♡ '.repeat(3 - runnerLives)}`.trim();
-      lives.setAttribute('aria-label', language === 'en' ? `${runnerLives} of 3 lives left` : `Жизней осталось: ${runnerLives} из 3`);
-      document.getElementById('runnerRound').textContent = runnerState === 'complete' || runnerState === 'over'
-        ? runnerText('finished')
-        : `${runnerText('round')} ${runnerIndex + 1} / ${runnerQuestions.length}`;
-      document.getElementById('runnerSentence').textContent = question.sentence;
-      document.getElementById('runnerTranslation').textContent = language === 'en' ? '' : question.meaning;
-      document.getElementById('runnerHint').textContent = question.hint[language];
-      document.getElementById('runnerCharacter').style.setProperty('--runner-position', `${16.66 + runnerLane * 33.34}%`);
-      track.setAttribute('aria-label', language === 'en' ? 'Three lanes with word choices' : 'Три дорожки с вариантами слова');
-      track.classList.toggle('is-slow', runnerState === 'ready' || runnerState === 'playing');
-      track.classList.toggle('is-sprint', runnerFeedback?.type === 'good' && runnerState === 'playing');
-      document.getElementById('runnerCharacter').classList.toggle('is-jumping', runnerJumping);
-
-      document.querySelectorAll('[data-runner-choice]').forEach((button, index) => {
-        const option = question.options[index];
-        const lane = button.closest('.runner-lane');
-        lane.classList.toggle('is-selected', runnerLane === index);
-        button.textContent = option.text;
-        button.disabled = runnerState !== 'playing' || runnerLocked;
-        button.setAttribute('aria-pressed', String(runnerLane === index));
-        button.setAttribute('aria-label', `${index + 1}: ${option.text}`);
-        lane.classList.toggle('is-correct', Boolean(option.correct && (runnerFeedback?.type === 'good' || runnerFeedback?.type === 'bad')));
-        lane.classList.toggle('is-wrong', runnerFeedback?.type === 'bad' && runnerFeedback.lane === index);
-      });
-      document.querySelectorAll('[data-runner-action]').forEach(button => {
-        button.disabled = runnerState !== 'playing' || runnerLocked;
-      });
-
-      let message = runnerFeedback?.text || runnerText('ready');
-      if (runnerState === 'complete') message = `${runnerText('completeScore')} ${runnerScore} ${runnerText('score')}`;
-      if (runnerState === 'over') message = `${runnerText('overScore')} ${runnerScore} ${runnerText('score')}`;
-      feedback.classList.toggle('is-good', runnerFeedback?.type === 'good' || runnerFeedback?.type === 'dodge' || runnerState === 'complete');
-      feedback.classList.toggle('is-bad', runnerFeedback?.type === 'bad' || runnerFeedback?.type === 'hit' || runnerState === 'over');
-      feedback.querySelector('span').textContent = message;
-
-      const startButton = document.getElementById('runnerStart');
-      startButton.hidden = runnerState === 'playing';
-      startButton.textContent = runnerState === 'ready' ? runnerText('start') : runnerText('again');
-    }
-    function stopRunnerHazards() {
-      window.clearInterval(runnerObstacleTimer);
-      runnerObstacleTimer = null;
-      document.querySelectorAll('.runner-hazard').forEach(hazard => hazard.remove());
-    }
-    function showRunnerMessage(type, text, duration = 1050) {
-      window.clearTimeout(runnerFeedbackTimer);
-      runnerFeedback = { type, text };
-      renderRunner();
-      runnerFeedbackTimer = window.setTimeout(() => {
-        if (runnerFeedback?.type !== type) return;
-        runnerFeedback = null;
-        renderRunner();
-      }, duration);
-    }
-    function spawnRunnerHazard() {
-      if (runnerState !== 'playing') return;
-      const laneIndex = Math.floor(Math.random() * 3);
-      const lane = document.querySelector('[data-runner-lane="' + laneIndex + '"]');
-      const hazard = document.createElement('span');
-      hazard.className = 'runner-hazard';
-      hazard.dataset.lane = String(laneIndex);
-      hazard.setAttribute('aria-hidden', 'true');
-      hazard.textContent = '!';
-      hazard.addEventListener('animationend', event => {
-        if (event.animationName !== 'runner-hazard-approach' || !hazard.isConnected) return;
-        hazard.remove();
-        if (runnerState !== 'playing' || runnerLocked) return;
-        if (runnerLane === laneIndex && !runnerJumping) {
-          runnerLives = Math.max(0, runnerLives - 1);
-          runnerStreak = 0;
-          runnerFeedback = { type: 'hit', text: runnerText('hit') };
-          const track = document.getElementById('runnerTrack');
-          track.classList.remove('is-hit');
-          void track.offsetWidth;
-          track.classList.add('is-hit');
-          window.setTimeout(() => track.classList.remove('is-hit'), 320);
-          if (runnerLives === 0) {
-            runnerState = 'over';
-            stopRunnerHazards();
-          }
-        } else {
-          runnerScore += 25;
-          if (!runnerFeedback) showRunnerMessage('dodge', runnerText('dodge'));
-        }
-        renderRunner();
-      });
-      lane.append(hazard);
-    }
-    function moveRunnerLane(direction) {
-      if (runnerState !== 'playing' || runnerLocked) return;
-      runnerLane = Math.max(0, Math.min(2, runnerLane + direction));
-      renderRunner();
-    }
-    function jumpRunner() {
-      if (runnerState !== 'playing' || runnerLocked || runnerJumping) return;
-      runnerJumping = true;
-      renderRunner();
-      window.clearTimeout(runnerJumpTimer);
-      runnerJumpTimer = window.setTimeout(() => {
-        runnerJumping = false;
-        renderRunner();
-      }, 760);
-    }
-    function runRunnerAction(action) {
-      if (action === 'left') moveRunnerLane(-1);
-      if (action === 'right') moveRunnerLane(1);
-      if (action === 'jump') jumpRunner();
-      if (action === 'select') chooseRunnerLane(runnerLane);
-    }
-    function startRunnerGame() {
-      stopRunnerHazards();
-      window.clearTimeout(runnerFeedbackTimer);
-      window.clearTimeout(runnerJumpTimer);
-      runnerIndex = 0;
-      runnerScore = 0;
-      runnerLives = 3;
-      runnerStreak = 0;
-      runnerLane = 1;
-      runnerLocked = false;
-      runnerJumping = false;
-      runnerFeedback = null;
-      runnerState = 'playing';
-      runnerObstacleTimer = window.setInterval(spawnRunnerHazard, 3200);
-      renderRunner();
-    }
-    function chooseRunnerLane(index) {
-      if (runnerState !== 'playing' || runnerLocked) return;
-      const question = runnerQuestions[runnerIndex];
-      const option = question.options[index];
-      if (!option) return;
-      runnerLane = index;
-      if (option.correct) {
-        window.clearTimeout(runnerFeedbackTimer);
-        runnerScore += 100 + runnerStreak * 20;
-        runnerStreak += 1;
-        runnerLocked = true;
-        const sentence = question.sentence.replace('___', option.text);
-        runnerFeedback = { type: 'good', text: `${runnerText('correct')} “${sentence}” — ${question.explanation[language]}` };
-        renderRunner();
-        window.setTimeout(() => {
-          runnerIndex += 1;
-          runnerLocked = false;
-          runnerFeedback = null;
-          if (runnerIndex >= runnerQuestions.length) {
-            runnerState = 'complete';
-            stopRunnerHazards();
-          }
-          renderRunner();
-        }, 820);
-        return;
-      }
-      window.clearTimeout(runnerFeedbackTimer);
-      runnerLives -= 1;
-      runnerStreak = 0;
-      const answer = question.options.find(item => item.correct).text;
-      runnerFeedback = { type: 'bad', lane: index, text: `${runnerText('wrong')} “${answer}”. ${question.explanation[language]}` };
-      if (runnerLives === 0) {
-        runnerState = 'over';
-        stopRunnerHazards();
-      }
-      renderRunner();
-    }
-    function syncRunnerFullscreen() {
-      const shell = document.getElementById('runnerShell');
-      const active = document.fullscreenElement === shell || shell.classList.contains('is-fullscreen');
-      const label = document.getElementById('runnerFullscreenLabel');
-      const button = document.getElementById('runnerFullscreen');
-      label.textContent = active
-        ? (language === 'en' ? translations.en.fullscreenExit : 'Выйти из полного экрана')
-        : (language === 'en' ? translations.en.fullscreenButton : 'На весь экран');
-      button.setAttribute('aria-label', label.textContent);
-      button.setAttribute('aria-pressed', String(active));
-      document.documentElement.classList.toggle('runner-lock', active);
-      document.body.classList.toggle('runner-lock', active);
-    }
-    async function toggleRunnerFullscreen() {
-      const shell = document.getElementById('runnerShell');
-      if (document.fullscreenElement === shell) {
-        await document.exitFullscreen();
-        return;
-      }
-      if (shell.classList.contains('is-fullscreen')) {
-        shell.classList.remove('is-fullscreen');
-        syncRunnerFullscreen();
-        return;
-      }
-      if (shell.requestFullscreen) {
-        try {
-          await shell.requestFullscreen();
-          syncRunnerFullscreen();
-          return;
-        } catch {}
-      }
-      shell.classList.add('is-fullscreen');
-      syncRunnerFullscreen();
-    }
     function setLanguage(next) {
       language = next;
       document.documentElement.lang = next;
@@ -1244,61 +813,14 @@
       document.querySelector('.hero-visual').setAttribute('aria-label', next === 'en' ? 'Learn at your own pace' : 'Как учиться в своём темпе');
       document.getElementById('micButton').setAttribute('aria-label', next === 'en' ? translations.en.micStart : 'Говорить');
       document.getElementById('sendButton').setAttribute('aria-label', next === 'en' ? translations.en.sendMessage : 'Отправить');
-      const actionNames = next === 'en'
-        ? { left: 'Run left', jump: 'Jump', right: 'Run right', select: 'Collect selected word' }
-        : { left: 'Бежать влево', jump: 'Прыгнуть', right: 'Бежать вправо', select: 'Выбрать слово' };
-      document.querySelectorAll('[data-runner-action]').forEach(button => {
-        button.setAttribute('aria-label', actionNames[button.dataset.runnerAction]);
-      });
-      document.querySelector('.runner-action-buttons').setAttribute('aria-label', next === 'en' ? 'Foxi controls' : 'Управление Фокси');
       updateThemeButton();
       setReaderSize(document.documentElement.dataset.textSize === 'large');
       renderWordCard();
       document.getElementById('wordStatus').textContent = '';
       setTutorStatus(serviceState);
-      renderRunner();
-      syncRunnerFullscreen();
       renderPlanMinutes();
     }
     document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.lang)));
-    document.querySelectorAll('[data-runner-choice]').forEach(button => button.addEventListener('click', () => chooseRunnerLane(Number(button.dataset.runnerChoice))));
-    document.getElementById('runnerStart').addEventListener('click', startRunnerGame);
-    document.getElementById('runnerFullscreen').addEventListener('click', toggleRunnerFullscreen);
-    document.addEventListener('fullscreenchange', syncRunnerFullscreen);
-    document.querySelectorAll('[data-runner-action]').forEach(button => {
-      button.addEventListener('click', () => runRunnerAction(button.dataset.runnerAction));
-    });
-    document.addEventListener('keydown', event => {
-      const shell = document.getElementById('runnerShell');
-      if (event.key === 'Escape' && shell.classList.contains('is-fullscreen')) {
-        shell.classList.remove('is-fullscreen');
-        syncRunnerFullscreen();
-      }
-      if (runnerState !== 'playing' || event.repeat || event.target.matches('input, textarea, select, [contenteditable="true"]')) return;
-      const inFullscreen = document.fullscreenElement === shell || shell.classList.contains('is-fullscreen');
-      const game = document.getElementById('game').getBoundingClientRect();
-      if (!inFullscreen && (game.bottom < 0 || game.top > window.innerHeight)) return;
-      const key = event.key.toLowerCase();
-      if (event.target.closest?.('#runnerShell button') && (key === 'enter' || event.code === 'Space')) return;
-      if (key === 'arrowleft' || key === 'a') {
-        event.preventDefault();
-        moveRunnerLane(-1);
-      } else if (key === 'arrowright' || key === 'd') {
-        event.preventDefault();
-        moveRunnerLane(1);
-      } else if (key === 'arrowup' || key === 'w' || event.code === 'Space') {
-        event.preventDefault();
-        jumpRunner();
-      } else if (key === 'enter') {
-        event.preventDefault();
-        chooseRunnerLane(runnerLane);
-      } else {
-        const lane = ({ '1': 0, '2': 1, '3': 2 })[key];
-        if (lane === undefined) return;
-        event.preventDefault();
-        chooseRunnerLane(lane);
-      }
-    });
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
     menuToggle.addEventListener('click', () => {
@@ -1364,7 +886,6 @@
     loadPersonalSettings();
     selectTutorMode(tutorMode);
     checkTutorServer();
-    renderRunner();
   </script>
 </body>
 </html>
