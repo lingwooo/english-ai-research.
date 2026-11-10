@@ -2,51 +2,50 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Забег Фокси</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Foxly Run — игра для практики английского</title>
 <style>
-  * { box-sizing: border-box }
-  body { margin: 0; padding: 24px; font: 16px Arial, sans-serif; color: #f6f8ee; background: #172b2c }
-  main { max-width: 900px; margin: auto; overflow: hidden; border-radius: 22px; background: #233a36; box-shadow: 0 20px 60px #08151488 }
-  header, footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 22px }
-  header { flex-wrap: wrap; background: #183d34 }
-  h1 { margin: 0; font-size: 24px }
-  .stats { display: flex; flex-wrap: wrap; gap: 9px }
-  .pill, button { border: 0; border-radius: 12px; padding: 10px 14px; font: inherit }
-  .pill { background: #ffffff18 }
-  button { cursor: pointer; font-weight: 700 }
-  button:disabled { cursor: default; opacity: .65 }
-  #fullscreen, #start { color: #17382e; background: #d4f174 }
-  .question { padding: 20px 22px; color: #243a31; background: #fbfcf5 }
-  .question-top { display: flex; justify-content: space-between; color: #627651; font-size: 14px; font-weight: 700 }
-  #clue { margin: 14px 0; font: 24px Georgia, serif }
-  #slots { display: flex; flex-wrap: wrap; gap: 7px }
-  .slot { padding: 7px 10px; border: 1px dashed #a9b69c; border-radius: 9px; color: #899286 }
-  .slot.filled { border-style: solid; background: #eaf3d9; color: #294b37 }
-  .progress { height: 6px; margin-top: 14px; overflow: hidden; border-radius: 9px; background: #e3e8dc }
-  #bar { width: 0; height: 100%; background: #9ec552; transition: width .25s }
-  #track { position: relative; height: 310px; overflow: hidden; perspective: 700px; background: linear-gradient(#506a77,#263d3b 70%,#172822) }
-  #track::after { position: absolute; inset: 0; z-index: 1; pointer-events: none; content: ""; background: repeating-linear-gradient(0deg,transparent 0 42px,#d7f3bd24 43px 45px) }
-  .lanes { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3,1fr) }
-  .lane { position: relative; display: flex; align-items: center; justify-content: center; border-right: 1px solid #e6ffd022 }
-  .choice { position: relative; z-index: 2; width: 88%; min-height: 70px; color: #263d31; background: #f4f7e9; box-shadow: 0 7px 0 #809c50, 0 14px 25px #0006; font-size: clamp(15px,3vw,21px); transform: perspective(500px) rotateX(8deg) }
-  .lane.selected .choice { outline: 4px solid #d4f174 }
-  #fox { position: absolute; z-index: 3; bottom: 8px; left: 50%; font-size: 58px; transform: translateX(-50%); transition: left .25s, transform .2s }
-  #fox.jump { transform: translate(-50%,-85px) scale(1.15) }
-  .hazard, .star { position: absolute; z-index: 2; top: 0; left: 50%; transform: translateX(-50%); animation: fall 5s linear forwards }
-  .hazard { color: #ff8065; font-size: 38px }
-  .star { color: #ffdb65; font-size: 36px; animation-duration: 6s }
-  @keyframes fall { to { top: 78%; transform: translateX(-50%) scale(1.5) rotate(180deg) } }
-  footer { color: #d3dfd3; font-size: 14px }
-  #message { flex: 1 }
-  @media (max-width:600px) {
-    body { padding: 8px }
-    header, footer { padding: 14px }
-    h1 { font-size: 20px }
-    #track { height: 270px }
-    #clue { font-size: 20px }
-    .choice { padding: 8px 4px; font-size: 15px }
-  }
+:root{--bg:#e9efdc;--card:#fbfcf5;--ink:#1f3a2f;--muted:#5f7152;--head:#183d34;--headink:#f6f8ee;--accent:#d4f174;--accentink:#17382e;--slot:#a9b69c;--filled:#eaf3d9;--track:#e3e8dc;--bar:#7fa63a;--shadow:#1f3a2f33;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#172b2c;--card:#233a36;--ink:#f6f8ee;--muted:#a9c08a;--slot:#5d7468;--filled:#2f5442;--track:#2f4a43;--bar:#9ec552;--shadow:#08151488;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#172b2c;--card:#233a36;--ink:#f6f8ee;--muted:#a9c08a;--slot:#5d7468;--filled:#2f5442;--track:#2f4a43;--bar:#9ec552;--shadow:#08151488;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{padding:24px;font:16px/1.4 "Trebuchet MS","Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg);min-height:100%}
+main{max-width:900px;margin:auto;overflow:hidden;border-radius:22px;background:var(--card);box-shadow:0 20px 60px var(--shadow)}
+header,footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 22px}
+header{flex-wrap:wrap;background:var(--head);color:var(--headink)}
+h1{margin:0;font:700 26px Georgia,serif}
+.stats{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pill,button{border:0;border-radius:12px;padding:9px 13px;font:inherit}
+.pill{background:#ffffff1f;color:var(--headink)}
+button{cursor:pointer;font-weight:700;color:var(--accentink);background:var(--accent)}
+button.ghost{background:#ffffff1f;color:var(--headink)}
+button:focus-visible{outline:3px solid #ffdb65;outline-offset:2px}
+.question{padding:16px 22px;color:var(--ink);background:var(--card)}
+.qtop{display:flex;justify-content:space-between;color:var(--muted);font-size:14px;font-weight:700}
+#clue{margin:10px 0;font:25px/1.25 Georgia,serif;max-width:34ch}
+#slots{display:flex;flex-wrap:wrap;gap:7px;min-height:36px}
+.slot{padding:5px 10px;border:1px dashed var(--slot);border-radius:9px;color:var(--muted)}
+.slot.filled{border-style:solid;background:var(--filled);color:var(--ink)}
+.progress{height:6px;margin-top:12px;overflow:hidden;border-radius:9px;background:var(--track)}
+#bar{width:0;height:100%;background:var(--bar);transition:width .25s}
+#stage{position:relative;background:#172822}
+#cv{display:block;width:100%;touch-action:none}
+#overlay{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px;text-align:center;color:#f6f8ee;background:#0f2420cc}
+#overlay[hidden]{display:none}
+#overlay h2{margin:0;font:700 30px Georgia,serif}
+#overlay p{margin:0;max-width:46ch;color:#d3dfd3}
+#overlay button{margin-top:6px;padding:13px 24px;font-size:18px}
+footer{background:var(--head);color:#d3dfd3;font-size:14px;flex-wrap:wrap}
+#message{flex:1;min-width:200px}
+.pad{display:flex;gap:8px}
+.pad button{min-width:48px;font-size:18px}
+@media (max-width:600px){body{padding:8px}header,footer{padding:12px 14px}h1{font-size:21px}#clue{font-size:21px}.pad{width:100%}.pad button{flex:1}}
+
+body.embed-mode{padding:0}
+body.embed-mode main{max-width:none;border-radius:0;box-shadow:none}
+#game:fullscreen{width:100vw;height:100vh;height:100dvh;max-width:none;border-radius:0}
 </style>
 </head>
 <body>
@@ -55,196 +54,275 @@
     <h1>🦊 Забег Фокси</h1>
     <div class="stats">
       <span class="pill" id="score">✦ 0</span>
-      <span class="pill" id="lives">♥ ♥ ♥</span>
+      <span class="pill" id="lives" aria-label="Жизни">♥ ♥ ♥</span>
       <span class="pill" id="combo">⚡ Комбо ×0</span>
+      <button class="ghost" id="sound" aria-label="Звук">🔊</button>
+      <button class="ghost" id="theme" aria-label="Тема">◐</button>
       <button id="fullscreen">⛶ На весь экран</button>
     </div>
   </header>
-
   <section class="question">
-    <div class="question-top"><span id="round">Фраза 1</span><span id="step">Слово 1</span></div>
+    <div class="qtop"><span id="round">Фраза 1</span><span id="step">Слово 1</span></div>
     <p id="clue"></p>
     <div id="slots"></div>
     <div class="progress"><div id="bar"></div></div>
   </section>
-
-  <section id="track">
-    <div class="lanes" id="lanes"></div>
-    <div id="fox">🦊</div>
-  </section>
-
+  <div id="stage">
+    <canvas id="cv"></canvas>
+    <div id="overlay">
+      <h2 id="ovTitle">Беги и собирай фразу</h2>
+      <p id="ovText">Фокси бежит сам. Вбегай в дорожку с нужным словом, перепрыгивай барьеры и подкатывайся под балки.<br>← → дорожка · ↑ прыжок · ↓ подкат. На телефоне свайпай по экрану.</p>
+      <button id="start">Начать игру</button>
+    </div>
+  </div>
   <footer>
-    <span id="message">Собирай слова по порядку и уворачивайся от ловушек.</span>
-    <button id="start">Начать игру</button>
+    <span id="message" role="status" aria-live="polite">Вбегай в дорожку с правильным словом.</span>
+    <div class="pad">
+      <button class="ghost" data-k="L" aria-label="Влево">←</button>
+      <button class="ghost" data-k="U" aria-label="Прыжок">↑</button>
+      <button class="ghost" data-k="D" aria-label="Подкат">↓</button>
+      <button class="ghost" data-k="R" aria-label="Вправо">→</button>
+    </div>
   </footer>
 </main>
-
 <script>
-const phrases = [
-  { ru: "Я часто проверяю почту перед завтраком.", words: ["I","often","check","my","email","before","breakfast."] },
-  { ru: "Не могли бы вы отправить мне файл?", words: ["Could","you","send","me","the","file?"] },
-  { ru: "Она каждый день ездит на работу на автобусе.", words: ["She","takes","the","bus","to","work","every","day."] },
-  { ru: "Мы закончили отчёт сегодня до обеда.", words: ["We","finished","the","report","before","lunch","today."] }
+const PHRASES=[
+ {ru:"Я часто проверяю почту перед завтраком.",words:["I","often","check","my","email","before","breakfast."]},
+ {ru:"Не могли бы вы отправить мне файл?",words:["Could","you","send","me","the","file?"]},
+ {ru:"Она каждый день ездит на работу на автобусе.",words:["She","takes","the","bus","to","work","every","day."]},
+ {ru:"Мы закончили отчёт сегодня до обеда.",words:["We","finished","the","report","before","lunch","today."]},
+ {ru:"Где находится ближайшая станция метро?",words:["Where","is","the","nearest","subway","station?"]},
+ {ru:"Он обычно пьёт кофе без сахара.",words:["He","usually","drinks","coffee","without","sugar."]},
+ {ru:"Мы встретимся в офисе завтра утром.",words:["We","will","meet","at","the","office","tomorrow","morning."]},
+ {ru:"Я изучаю английский уже два года.",words:["I","have","studied","English","for","two","years."]},
+ {ru:"Можно мне ещё чашку чая?",words:["Can","I","have","another","cup","of","tea?"]},
+ {ru:"Они живут рядом с большим парком.",words:["They","live","near","a","big","park."]}
 ];
-const wordBank = ["am","is","are","the","a","to","at","in","on","you","we","they","work","email","send","from","after","today","often","will","can","my","your","report"];
-let round = 0, step = 0, score = 0, lives = 3, streak = 0, lane = 1;
-let playing = false, jumping = false, locked = false, misses = 0;
-let options = [], hazardTimer, starTimer;
+const BANK=["am","is","are","the","a","to","at","in","on","you","we","they","work","email","send","from","after","today","often","will","can","my","your","report","bus","home","she","he","was","were","with","never","coffee","new","open","call","early","late","good","small"];
+const ROUNDS=5;
+const $=id=>document.getElementById(id);
+const shuffled=a=>[...a].sort(()=>Math.random()-.5);
+const clean=w=>w.toLowerCase().replace(/[.!?]/g,"");
+const cv=$("cv"),ctx=cv.getContext("2d");
+let W=800,H=420,deck=[],round=0,step=0,score=0,lives=3,streak=0,lane=1,px=1,best=0,misses=0;
+let playing=false,muted=false,objs=[],off=0,t=0,jt=-1,sl=0,invul=0,shake=0,last=0,ac;
+const cur=()=>deck[Math.min(round,deck.length-1)];
 
-const $ = id => document.getElementById(id);
-function shuffled(items) { return [...items].sort(() => Math.random() - .5) }
+try{best=+localStorage.getItem("foxBest")||0;muted=localStorage.getItem("foxMute")==="1";const th=localStorage.getItem("foxTheme");if(th)document.documentElement.dataset.theme=th}catch(e){}
 
-function makeOptions() {
-  const answer = phrases[round].words[step];
-  const clean = word => word.toLowerCase().replace(/[.!?]/g, "");
-  const wrong = wordBank.filter(word =>
-    clean(word) !== clean(answer) &&
-    !phrases[round].words.some(part => clean(part) === clean(word))
-  );
-  options = shuffled([answer, ...shuffled(wrong).slice(0, 2)]);
+function beep(f,d=.12,type="sine"){
+ if(muted)return;
+ try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();
+ const o=ac.createOscillator(),g=ac.createGain();o.type=type;o.frequency.value=f;
+ g.gain.setValueAtTime(.08,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+d);
+ o.connect(g).connect(ac.destination);o.start();o.stop(ac.currentTime+d)}catch(e){}
 }
 
-function draw() {
-  const phrase = phrases[Math.min(round, phrases.length - 1)];
-  $("score").textContent = "✦ " + score;
-  $("lives").textContent = "♥ ".repeat(lives) + "♡ ".repeat(3 - lives);
-  $("combo").textContent = "⚡ Комбо ×" + streak;
-  $("round").textContent = playing ? "Фраза " + (round + 1) + " / " + phrases.length : "Игра Фокси";
-  $("step").textContent = "Слово " + Math.min(step + 1, phrase.words.length) + " / " + phrase.words.length;
-  $("clue").textContent = phrase.ru;
+const EMBEDDED=new URLSearchParams(location.search).get("embed")==="1";if(EMBEDDED)document.body.classList.add("embed-mode");
+function resize(){
+ const w=cv.parentElement.getBoundingClientRect().width||800,dpr=devicePixelRatio||1;
+ W=w;H=document.fullscreenElement?Math.max(240,innerHeight-300):Math.max(240,Math.min(w*(EMBEDDED ? .36 : .6),EMBEDDED ? 320 : 480));
+ cv.style.height=H+"px";cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+}
+addEventListener("resize",resize);document.addEventListener("fullscreenchange",()=>setTimeout(resize,50));
 
-  $("slots").replaceChildren(...phrase.words.map((word, i) => {
-    const slot = document.createElement("span");
-    slot.className = "slot" + (i < step ? " filled" : "");
-    slot.textContent = i < step ? word : "···";
-    return slot;
-  }));
-  $("bar").style.width = Math.round(step / phrase.words.length * 100) + "%";
-
-  $("lanes").replaceChildren(...[0,1,2].map(i => {
-    const box = document.createElement("div");
-    box.className = "lane" + (i === lane ? " selected" : "");
-    const button = document.createElement("button");
-    button.className = "choice";
-    button.textContent = options[i] || "";
-    button.disabled = !playing || locked;
-    button.onclick = () => choose(i);
-    box.append(button);
-    return box;
-  }));
-  $("fox").style.left = (16.66 + lane * 33.34) + "%";
-  $("start").hidden = playing;
+function ui(){
+ const p=cur();
+ $("score").textContent="✦ "+score;
+ $("lives").textContent="♥ ".repeat(lives)+"♡ ".repeat(3-lives);
+ $("combo").textContent="⚡ Комбо ×"+streak;
+ $("round").textContent=playing?"Фраза "+(round+1)+" из "+deck.length:"Игра Фокси";
+ $("step").textContent="Слово "+Math.min(step+1,p.words.length)+" из "+p.words.length;
+ $("clue").textContent=p.ru;
+ $("slots").replaceChildren(...p.words.map((w,i)=>{
+  const s=document.createElement("span");s.className="slot"+(i<step?" filled":"");
+  s.textContent=i<step?w:"···";return s;
+ }));
+ $("bar").style.width=Math.round(step/p.words.length*100)+"%";
+ $("sound").textContent=muted?"🔇":"🔊";
 }
 
-function choose(i) {
-  if (!playing || locked) return;
-  lane = i;
-  const answer = phrases[round].words[step];
-  if (options[i] !== answer) {
-    streak = 0;
-    misses++;
-    $("message").textContent = misses > 1 ? "Подсказка: нужно слово «" + answer + "»." : "Почти! Попробуй ещё раз.";
-    draw();
-    return;
+/* волна: препятствия, звезда и ворота со словами */
+function wave(){
+ const p=cur(),ans=p.words[step];
+ const wrong=BANK.filter(w=>clean(w)!==clean(ans)&&!p.words.some(x=>clean(x)===clean(w)));
+ const words=shuffled([ans,...shuffled(wrong).slice(0,2)]);
+ objs.push({k:"star",dist:12,lane:Math.floor(Math.random()*3)});
+ const n=1+(Math.random()<.6?1:0);
+ for(let i=0;i<n;i++)objs.push({k:Math.random()<.5?"low":"high",dist:20+i*12,lane:Math.floor(Math.random()*3)});
+ objs.push({k:"gate",dist:46,words,ans:words.indexOf(ans)});
+}
+
+const pr=d=>1/(1+d/9);
+const X=(l,s)=>W/2+(l-1)*W*.27*s;
+const Y=s=>H*.3+(H*.88-H*.3)*s;
+
+function update(dt){
+ const v=13+round*1.3;
+ off+=v*dt;
+ for(const o of objs)o.dist-=v*dt;
+ px+=(lane-px)*Math.min(1,dt*14);
+ if(jt>=0){jt+=dt/.72;if(jt>=1)jt=-1}
+ if(sl>0)sl-=dt;
+ if(invul>0)invul-=dt;
+ if(shake>0)shake-=dt;
+ for(const o of objs){
+  if(o.done||o.dist>.3)continue;
+  o.done=true;
+  if(o.k==="gate"){
+   if(lane===o.ans){
+    const pts=15+Math.min(streak,8)*5;score+=pts;streak++;step++;misses=0;beep(660);
+    if(step===cur().words.length){
+     score+=100;beep(880,.3);
+     $("message").textContent="Фраза собрана: «"+cur().words.join(" ")+"». +100 ✨";
+     round++;step=0;
+     if(round===deck.length){ui();finish(true);return}
+    }else $("message").textContent="Верно! +"+pts+" · Комбо ×"+streak;
+   }else{
+    streak=0;misses++;beep(180,.25,"sawtooth");shake=.25;
+    $("message").textContent=misses>1?"Подсказка: нужно слово «"+cur().words[step]+"».":"Не то слово. Попробуй ещё раз!";
+   }
+   ui();wave();
+  }else if(Math.abs(px-o.lane)<.6){
+   if(o.k==="star"){score+=50;beep(990,.15);$("message").textContent="Звезда! +50 ✨";ui()}
+   else if(invul<=0&&((o.k==="low"&&jt<.12||o.k==="low"&&jt>.88||o.k==="low"&&jt<0)||(o.k==="high"&&sl<=0))){
+    lives--;streak=0;invul=1.2;shake=.35;beep(120,.3,"square");
+    $("message").textContent=o.k==="low"?"Барьер! Перепрыгни его (↑).":"Балка! Подкатись под неё (↓).";
+    ui();if(!lives){finish(false);return}
+   }
   }
+ }
+ objs=objs.filter(o=>o.dist>-3);
+}
 
-  const points = 15 + Math.min(streak, 8) * 5;
-  score += points;
-  streak++;
-  step++;
-  misses = 0;
-  locked = true;
+function quad(l0,s0,l1,s1){ctx.beginPath();ctx.moveTo(X(l0,s0),Y(s0));ctx.lineTo(X(l1,s0),Y(s0));ctx.lineTo(X(l1,s1),Y(s1));ctx.lineTo(X(l0,s1),Y(s1));ctx.fill()}
 
-  if (step === phrases[round].words.length) {
-    score += 100;
-    $("message").textContent = "Фраза собрана! +100 бонусных очков ✨";
-  } else {
-    $("message").textContent = "Отлично! +" + points + " · Комбо ×" + streak;
-    makeOptions();
+function render(){
+ const hy=H*.3;
+ ctx.save();
+ if(shake>0)ctx.translate((Math.random()-.5)*10*shake,0);
+ let g=ctx.createLinearGradient(0,0,0,hy+10);g.addColorStop(0,"#1f4a5c");g.addColorStop(1,"#b4d08c");
+ ctx.fillStyle=g;ctx.fillRect(-20,0,W+40,hy+2);
+ ctx.fillStyle="#ffe58a";ctx.beginPath();ctx.arc(W*.5,hy-6,H*.09,0,7);ctx.fill();
+ ctx.fillStyle="#172822";ctx.fillRect(-20,hy,W+40,H-hy);
+ for(let k=9;k>=0;k--){
+  const n=Math.floor(off/10)+k,d=n*10-off;if(d<-1)continue;
+  const s=pr(d),hh=(70+(n*37%5)*34)*s*1.6;
+  for(const side of [-1,1]){
+   const x0=X(side<0?-3.4:2.9,s),x1=X(side<0?-.95:5.35,s),yb=Y(s),m=(n+(side>0?2:0))%3;
+   ctx.fillStyle=m===0?"#35545a":m===1?"#2c4a4a":"#3d5d52";ctx.fillRect(x0,yb-hh,x1-x0,hh);
+   ctx.fillStyle="#ffffff14";ctx.fillRect(x0,yb-hh,x1-x0,Math.max(2,4*s));
+   ctx.fillStyle="#ffdb6555";
+   for(let r=1;r<4;r++)for(let c=0;c<3;c++)if((n+r*3+c+side)%3)ctx.fillRect(x0+(x1-x0)*(.12+c*.3),yb-hh+hh*r*.22,(x1-x0)*.16,hh*.08);
   }
-  draw();
-
-  setTimeout(() => {
-    if (step === phrases[round].words.length) {
-      round++;
-      step = 0;
-      if (round === phrases.length) {
-        playing = false;
-        $("message").textContent = "Финиш! Твой счёт: " + score;
-      } else {
-        makeOptions();
-      }
-    }
-    locked = false;
-    draw();
-  }, step === phrases[Math.min(round, phrases.length - 1)].words.length ? 900 : 350);
+ }
+ ctx.fillStyle="#3b4f4c";quad(-.5,0,2.5,1.3);
+ ctx.fillStyle="rgba(0,0,0,.16)";
+ for(let i=0;i<26;i++){const n=Math.floor(off/3)+i;if(n&1)continue;const d=Math.max(-1,n*3-off);quad(-.5,pr(d+3),2.5,pr(d))}
+ ctx.strokeStyle="#ffffff66";ctx.lineWidth=2;
+ for(const l of [.5,1.5]){ctx.beginPath();ctx.moveTo(X(l,0),Y(0));ctx.lineTo(X(l,1.3),Y(1.3));ctx.stroke()}
+ ctx.strokeStyle="#d4f174";ctx.lineWidth=4;
+ for(const l of [-.5,2.5]){ctx.beginPath();ctx.moveTo(X(l,0),Y(0));ctx.lineTo(X(l,1.3),Y(1.3));ctx.stroke()}
+ const list=[...objs].sort((a,b)=>b.dist-a.dist);
+ for(const o of list){
+  const s=pr(o.dist),yb=Y(s);
+  if(o.k==="gate"){
+   for(let i=0;i<3;i++){
+    const cx=X(i,s),w=W*.24*s,h=78*s;
+    ctx.fillStyle="rgba(212,241,116,.28)";ctx.beginPath();ctx.ellipse(cx,yb,w*.6,12*s,0,0,7);ctx.fill();
+    ctx.fillStyle="#6f8b49";ctx.fillRect(cx-w*.42,yb-46*s,5*s,46*s);ctx.fillRect(cx+w*.42-5*s,yb-46*s,5*s,46*s);
+    ctx.fillStyle=o.done&&i===o.ans?"#d4f174":"#f4f7e9";
+    ctx.beginPath();ctx.roundRect(cx-w/2,yb-46*s-h,w,h,12*s);ctx.fill();
+    ctx.strokeStyle="#809c50";ctx.lineWidth=Math.max(1,4*s);ctx.stroke();
+    ctx.fillStyle="#263d31";ctx.font="700 "+Math.max(9,26*s)+"px Trebuchet MS,sans-serif";
+    ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(o.words[i],cx,yb-46*s-h/2);
+   }
+  }else{
+   const cx=X(o.lane,s),w=W*.2*s;
+   if(o.k==="low"){
+    ctx.fillStyle="#e8553d";ctx.fillRect(cx-w/2,yb-44*s,w,44*s);
+    ctx.fillStyle="#fff";for(let i=0;i<4;i++)ctx.fillRect(cx-w/2+w*(.08+i*.25),yb-44*s,w*.1,44*s);
+   }else if(o.k==="high"){
+    ctx.fillStyle="#555";ctx.fillRect(cx-w/2,yb-150*s,6*s,150*s);ctx.fillRect(cx+w/2-6*s,yb-150*s,6*s,150*s);
+    ctx.fillStyle="#ffcf3d";ctx.fillRect(cx-w/2,yb-118*s,w,34*s);
+    ctx.fillStyle="#222";for(let i=0;i<5;i++)ctx.fillRect(cx-w/2+w*i*.2,yb-118*s,w*.09,34*s);
+   }else if(!o.done){
+    ctx.fillStyle="#ffdb65";ctx.font=(34*s)+"px serif";ctx.textAlign="center";ctx.textBaseline="alphabetic";ctx.fillText("★",cx,yb-24*s+Math.sin(t*6)*4*s);
+   }
+  }
+ }
+ /* Фокси */
+ const x=X(px,1),yb=H*.88,run=playing&&jt<0&&sl<=0;
+ const jy=jt>=0?4*H*.26*jt*(1-jt):0,bob=run?Math.abs(Math.sin(t*14))*6:0;
+ ctx.fillStyle="rgba(0,0,0,.35)";ctx.beginPath();ctx.ellipse(x,yb+4,34-jy*.15,8,0,0,7);ctx.fill();
+ if(!(invul>0&&Math.floor(t*14)%2)){
+  ctx.save();ctx.translate(x,yb-jy-bob);ctx.rotate((lane-px)*.35);
+  if(sl>0)ctx.scale(1.25,.55);
+  ctx.font="64px serif";ctx.textAlign="center";ctx.textBaseline="alphabetic";ctx.fillText("🦊",0,0);
+  ctx.restore();
+ }
+ ctx.restore();
 }
 
-function jump() {
-  if (!playing || jumping) return;
-  jumping = true;
-  $("fox").classList.add("jump");
-  setTimeout(() => { jumping = false; $("fox").classList.remove("jump"); }, 700);
+function frame(ts){
+ const dt=Math.min(.05,(ts-last)/1000||0);last=ts;t+=dt;
+ if(playing)update(dt);else off+=5*dt;
+ render();requestAnimationFrame(frame);
 }
 
-function spawn(item, className, duration, points) {
-  if (!playing) return;
-  const target = Math.floor(Math.random() * 3);
-  const object = document.createElement("span");
-  object.className = className;
-  object.textContent = item;
-  $("lanes").children[target].append(object);
-  object.addEventListener("animationend", () => {
-    object.remove();
-    if (!playing) return;
-    if (lane === target && className === "hazard" && !jumping) {
-      lives--;
-      streak = 0;
-      $("message").textContent = "Ой! Перепрыгни ловушку или смени дорожку.";
-      if (!lives) {
-        playing = false;
-        clearInterval(hazardTimer);
-        clearInterval(starTimer);
-        $("message").textContent = "Забег окончен. Счёт: " + score;
-      }
-    } else if (lane === target && className === "star") {
-      score += points;
-      $("message").textContent = "Звезда поймана! +" + points + " ✨";
-    } else if (className === "hazard") score += 25;
-    draw();
-  });
+function finish(win){
+ playing=false;
+ const rec=score>best;
+ if(rec){best=score;try{localStorage.setItem("foxBest",best)}catch(e){}}
+ $("ovTitle").textContent=win?"Финиш! Все фразы собраны":"Забег окончен";
+ $("ovText").textContent="Твой счёт: "+score+(rec?". Это новый рекорд!":". Рекорд: "+best+".");
+ $("start").textContent="Сыграть ещё раз";
+ $("overlay").hidden=false;$("start").focus();ui();
 }
 
-function start() {
-  clearInterval(hazardTimer);
-  clearInterval(starTimer);
-  round = 0; step = 0; score = 0; lives = 3; streak = 0; lane = 1;
-  misses = 0; playing = true; locked = false;
-  $("message").textContent = "Выбирай следующее слово и следи за ловушками!";
-  makeOptions();
-  draw();
-  hazardTimer = setInterval(() => spawn("!", "hazard", 5000, 0), 4800);
-  starTimer = setInterval(() => spawn("✦", "star", 6000, 50), 7000);
+function start(){
+ deck=shuffled(PHRASES).slice(0,ROUNDS);
+ round=0;step=0;score=0;lives=3;streak=0;lane=1;px=1;misses=0;jt=-1;sl=0;invul=0;objs=[];
+ playing=true;$("overlay").hidden=true;
+ $("message").textContent="Вбегай в дорожку с правильным словом.";
+ wave();ui();
 }
 
-$("start").onclick = start;
-$("fullscreen").onclick = async () => {
-  if (document.fullscreenElement) await document.exitFullscreen();
-  else await $("game").requestFullscreen?.();
-};
-
-document.addEventListener("keydown", event => {
-  if (!playing) return;
-  if (event.key === "ArrowLeft" || event.key.toLowerCase() === "a") lane = Math.max(0, lane - 1);
-  else if (event.key === "ArrowRight" || event.key.toLowerCase() === "d") lane = Math.min(2, lane + 1);
-  else if (event.key === "ArrowUp" || event.code === "Space") { event.preventDefault(); jump(); }
-  else if (event.key === "Enter") choose(lane);
-  else return;
-  draw();
+function act(a){
+ if(!playing)return;
+ if(a==="L")lane=Math.max(0,lane-1);
+ else if(a==="R")lane=Math.min(2,lane+1);
+ else if(a==="U"){if(jt<0){jt=0;sl=0;beep(520,.08)}}
+ else if(a==="D"){if(jt>=0)jt=Math.max(jt,.7);sl=.65;beep(300,.08)}
+}
+document.addEventListener("keydown",e=>{
+ const k=e.key.toLowerCase(),m={arrowleft:"L",a:"L",arrowright:"R",d:"R",arrowup:"U",w:"U"," ":"U",arrowdown:"D",s:"D"}[k];
+ if(m&&playing){e.preventDefault();act(m)}
+});
+document.querySelectorAll(".pad button").forEach(b=>b.onclick=()=>act(b.dataset.k));
+let sx,sy;
+cv.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+cv.addEventListener("touchend",e=>{
+ const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+ if(Math.max(Math.abs(dx),Math.abs(dy))<24)return;
+ act(Math.abs(dx)>Math.abs(dy)?(dx>0?"R":"L"):(dy>0?"D":"U"));
 });
 
-makeOptions();
-draw();
+$("start").onclick=start;
+$("sound").onclick=()=>{muted=!muted;try{localStorage.setItem("foxMute",muted?"1":"0")}catch(e){}ui()};
+$("theme").onclick=()=>{
+ const d=document.documentElement,dark=getComputedStyle(d).colorScheme==="dark";
+ d.dataset.theme=dark?"light":"dark";
+ try{localStorage.setItem("foxTheme",d.dataset.theme)}catch(e){}
+};
+$("fullscreen").onclick=async()=>{
+ try{if(document.fullscreenElement)await document.exitFullscreen();else await $("game").requestFullscreen?.()}catch(e){}
+};
+
+deck=shuffled(PHRASES).slice(0,ROUNDS);
+resize();ui();
+if(best)$("ovText").innerHTML+="<br>Твой рекорд: "+best+".";
+requestAnimationFrame(frame);
 </script>
 </body>
 </html>
